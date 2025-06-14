@@ -1,4 +1,11 @@
 
+using Microsoft.EntityFrameworkCore;
+using Repository.Interfaces;
+using Repository.Repositories;
+using Service.Interfaces;
+using Service.Service;
+using StudyPlatform.Models;
+
 namespace StudyPlatformAPI
 {
     public class Program
@@ -13,6 +20,15 @@ namespace StudyPlatformAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<StudyPlatformContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
+
+            builder.Services.AddScoped<IChapterService, ChapterService>();
+            builder.Services.AddScoped<IChapterRepository, ChapterRepository>();
+
 
             var app = builder.Build();
 
