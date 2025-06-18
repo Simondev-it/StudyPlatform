@@ -11,16 +11,16 @@ namespace Service.Service
 {
     public class ChapterService : IChapterService
     {
-        private readonly IChapterRepository _chapterRepo;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ChapterService(IChapterRepository chapterRepo)
+        public ChapterService(IUnitOfWork unitOfWork)
         {
-            _chapterRepo = chapterRepo;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<List<Chapter>> GetAllChaptersAsync()
         {
-            var chapters = await _chapterRepo.GetAllAsync();
+            var chapters = await _unitOfWork.ChapterRepository.GetAllAsync();
             return chapters;
 
         }
