@@ -1,4 +1,5 @@
-﻿using Repository.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using Repository.Interfaces;
 using StudyPlatform.Models;
 using System;
 using System.Collections.Generic;
@@ -16,5 +17,16 @@ namespace Repository.Repositories
         {
             _context = context;
         }
+
+
+        public async Task<List<Subject>> GetAllSubjects()
+        {
+            return await _context.Subjects
+                .Include(s => s.Chapters)
+                .ThenInclude(c => c.Topics)
+                .ToListAsync();
+        }
+
     }
 }
+

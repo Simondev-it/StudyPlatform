@@ -10,5 +10,6 @@ namespace Repository.Interfaces
     public interface IGenericRepository<T> where T : class
     {
         public Task<List<T >> GetAllAsync(Expression<Func<T , bool>>? predicate = null!, params Expression<Func<T , object>>[] includes);
-    }
+
+     }
 }

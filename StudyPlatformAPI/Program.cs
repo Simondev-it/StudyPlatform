@@ -6,6 +6,7 @@ using Service.Interfaces;
 using Service.Service;
 using StudyPlatform;
 using StudyPlatform.Models;
+using System.Text.Json.Serialization;
 
 namespace StudyPlatformAPI
 {
@@ -17,7 +18,11 @@ namespace StudyPlatformAPI
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+            });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -31,10 +36,12 @@ namespace StudyPlatformAPI
 
             builder.Services.AddScoped<IChapterService, ChapterService>();
             builder.Services.AddScoped<IChapterRepository, ChapterRepository>();
+            builder.Services.AddScoped<ITopicRepository, TopicRepository>();
 
 
             builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
             builder.Services.AddScoped<ISubjectService, SubjectService>();
+            builder.Services.AddScoped<ITopicService, TopicService>();
 
             var app = builder.Build();
 

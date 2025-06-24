@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using StudyPlatform.Models;
+﻿using StudyPlatform.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Service.Interfaces
 {
-    public interface ISubjectService
+    public interface ITopicService
     {
-        public Task<List<Subject>> GetAllSubjects();
+        Task<List<Topic>> GetAllTopicsAsync();
     }
 }
