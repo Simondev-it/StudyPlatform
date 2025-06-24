@@ -4,6 +4,7 @@ using Repository.Interfaces;
 using Repository.Repositories;
 using Service.Interfaces;
 using Service.Service;
+using StudyPlatform;
 using StudyPlatform.Models;
 
 namespace StudyPlatformAPI
@@ -26,9 +27,14 @@ namespace StudyPlatformAPI
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             builder.Services.AddScoped<IChapterService, ChapterService>();
             builder.Services.AddScoped<IChapterRepository, ChapterRepository>();
 
+
+            builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
+            builder.Services.AddScoped<ISubjectService, SubjectService>();
 
             var app = builder.Build();
 

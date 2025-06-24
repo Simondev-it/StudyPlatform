@@ -9,6 +9,7 @@ namespace Repository.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         public IChapterRepository ChapterRepository { get; }
+        public ISubjectRepository SubjectRepository { get; }
         Task<int> SaveChangeAsync();
 
 
