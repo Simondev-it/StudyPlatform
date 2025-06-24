@@ -27,6 +27,14 @@ namespace Repository.Repositories
                 .ToListAsync();
         }
 
+        public async Task<Subject> GetSubjectsById(int id)
+        {
+            return await _context.Subjects
+                .Include(s => s.Chapters)
+                .ThenInclude(c => c.Topics)
+                .FirstOrDefaultAsync(s => s.Id == id);
+        }
+
     }
 }
 

@@ -27,6 +27,11 @@ namespace Service.Service
             return await _unitOfWork.SubjectRepository.GetAllSubjects();
         }
 
+        public async Task<Subject> GetSubjectByID(int id)
+        {
+            return await _unitOfWork.SubjectRepository.GetSubjectsById(id);
+        }
+
         //public async Task<List<Subject>> GetAllSubjects()
         //{
         //    return await _unitOfWork.SubjectRepository.GetAllAsync(

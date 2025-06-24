@@ -10,5 +10,6 @@ namespace Repository.Interfaces
     public interface ISubjectRepository : IGenericRepository<Subject>
     {
         public Task<List<Subject>> GetAllSubjects();
+        public Task<Subject> GetSubjectsById(int id);
     }
 }

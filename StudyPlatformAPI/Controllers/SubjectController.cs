@@ -14,10 +14,17 @@ namespace StudyPlatformAPI.Controllers
          
 
         
-        [HttpGet("subject/getAll")]
+        [HttpGet("subject/getAllSubject")]
         public async Task<IActionResult> GetAll()
         {
             var result = await _subjectService.GetAllSubjects();
+            return Ok(result);
+        }
+
+        [HttpGet("subject/getSubject/{id}")]
+        public async Task<IActionResult> GetSubjectById(int id)
+        {
+            var result = await _subjectService.GetSubjectByID(id);
             return Ok(result);
         }
     }

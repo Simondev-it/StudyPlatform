@@ -43,6 +43,21 @@ namespace StudyPlatformAPI
             builder.Services.AddScoped<ISubjectService, SubjectService>();
             builder.Services.AddScoped<ITopicService, TopicService>();
 
+            builder.Services.AddEndpointsApiExplorer();
+
+            builder.Services.AddRouting(options => options.LowercaseUrls = true);
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicyDevelopement",
+                    policy =>
+                    {
+                        policy
+                            .AllowAnyOrigin()
+                            .AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                    });
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
