@@ -13,7 +13,7 @@ namespace StudyPlatformAPI.Controllers
             _chapterService = chapterService;
         }
 
-        [HttpGet("init")]
+        [HttpGet("chapter")]
         public async Task<IActionResult> Get()
         {
             var result = await _chapterService.GetAllChaptersAsync();
