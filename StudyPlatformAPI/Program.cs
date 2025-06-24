@@ -68,7 +68,7 @@ namespace StudyPlatformAPI
                 app.UseSwaggerUI();
             }
 
-            app.UseCors(options => options.WithOrigins("http://localhost:4200")
+            app.UseCors(options => options.WithOrigins("http://localhost:5173")
                                           .AllowAnyMethod()
                                           .AllowAnyHeader());
 
