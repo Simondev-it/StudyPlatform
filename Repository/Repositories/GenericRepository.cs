@@ -25,7 +25,10 @@ namespace Repository.Repositories
         public Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? predicate = null, params Expression<Func<T, object>>[] includes)
         {
             IQueryable<T> query = _dbSet;
-             
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
             foreach (var include in includes)
             {
                 query = query.Include(include);
@@ -33,5 +36,6 @@ namespace Repository.Repositories
 
             return query.ToListAsync();
         }
+
     }
 }
