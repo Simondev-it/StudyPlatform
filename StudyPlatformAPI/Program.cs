@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Repository.Interfaces;
 using Repository.Repositories;
@@ -47,16 +48,16 @@ namespace StudyPlatformAPI
 
             builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicyDevelopement",
-                    policy =>
-                    {
-                        policy
-                            .AllowAnyOrigin()
-                            .AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
-                    });
-            });
+            //builder.Services.AddCors(options =>
+            //{
+            //    options.AddPolicy("CorsPolicyDevelopement",
+            //        policy =>
+            //        {
+            //            policy
+            //                .AllowAnyOrigin()
+            //                .AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+            //        });
+            //});
 
             var app = builder.Build();
 
@@ -66,6 +67,10 @@ namespace StudyPlatformAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseCors(options => options.WithOrigins("http://localhost:4200")
+                                          .AllowAnyMethod()
+                                          .AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
