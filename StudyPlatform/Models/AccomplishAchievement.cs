@@ -5,17 +5,21 @@ using System.Collections.Generic;
 
 namespace StudyPlatform.Models;
 
-public partial class Following
+public partial class AccomplishAchievement
 {
     public int Id { get; set; }
 
-    public DateOnly? FollowDate { get; set; }
+    public int? Progress { get; set; }
 
-    public int? FollowingId { get; set; }
+    public DateOnly? AchieveDate { get; set; }
+
+    public int? Status { get; set; }
+
+    public int? AchievementId { get; set; }
 
     public int? UserId { get; set; }
 
-    public virtual User FollowingNavigation { get; set; }
+    public virtual Achievement Achievement { get; set; }
 
     public virtual User User { get; set; }
 }
