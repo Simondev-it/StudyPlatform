@@ -132,8 +132,10 @@ public partial class StudyPlatformContext : DbContext
 
             entity.ToTable("Progress");
 
-            entity.HasOne(d => d.BoughtSubject).WithMany(p => p.Progresses)
-                .HasForeignKey(d => d.BoughtSubjectId)
+            // Corrected the foreign key definition to use the appropriate property type
+            entity.HasOne(d => d.BoughtSubject)
+                .WithOne(p => p.Progress)
+                .HasForeignKey<Progress>(d => d.BoughtSubjectId)
                 .HasConstraintName("FK__Progress__Bought__4BAC3F29");
         });
 
