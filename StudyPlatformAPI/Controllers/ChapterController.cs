@@ -3,6 +3,7 @@ using Service.Interfaces;
 
 namespace StudyPlatformAPI.Controllers
 {
+    [Route("api/[controller]")]
     public class ChapterController : ControllerBase
     {
 
@@ -13,7 +14,7 @@ namespace StudyPlatformAPI.Controllers
             _chapterService = chapterService;
         }
 
-        [HttpGet("chapter")]
+        [HttpGet("")]
         public async Task<IActionResult> Get()
         {
             var result = await _chapterService.GetAllChaptersAsync();

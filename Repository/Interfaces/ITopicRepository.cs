@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Repository.Interfaces
 {
-    public interface ITopicRepository : IGenericRepository<Topic>
+    public interface ITopicRepository : IGenericRepository<Topic, int>
     {
+        public Task<Topic> GetTopicById(int id);
     }
 }

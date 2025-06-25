@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Repository.Interfaces
 {
-    public interface IGenericRepository<T> where T : class
+    public interface IGenericRepository<T, TKey> where T : class where TKey : IEquatable<TKey>
     {
-        public Task<List<T >> GetAllAsync(Expression<Func<T , bool>>? predicate = null!, params Expression<Func<T , object>>[] includes);
+        public Task<List<T>> GetAllAsync();
+        public Task<T?> GetByIdAsync(TKey id);
 
      }
 }

@@ -24,6 +24,13 @@ namespace Service.Service
             return chapters;
 
         }
- 
+
+        public async Task<Topic> GetTopicsByIdAsync(int id)
+        {
+            var chapters = await _unitOfWork.TopicRepository.GetTopicById(id);
+            return chapters;
+
+        }
+
     }
 }

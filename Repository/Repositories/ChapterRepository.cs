@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Repositories
 {
-    public class ChapterRepository : GenericRepository<Chapter>, IChapterRepository
+    public class ChapterRepository : GenericRepository<Chapter, int>, IChapterRepository
     {
         private readonly StudyPlatformContext _context;
 

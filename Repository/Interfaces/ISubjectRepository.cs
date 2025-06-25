@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Interfaces
 {
-    public interface ISubjectRepository : IGenericRepository<Subject>
+    public interface ISubjectRepository : IGenericRepository<Subject, int>
     {
         public Task<List<Subject>> GetAllSubjects();
         public Task<Subject> GetSubjectsById(int id);

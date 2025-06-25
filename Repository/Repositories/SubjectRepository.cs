@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Repositories
 {
-    public class SubjectRepository : GenericRepository<Subject>, ISubjectRepository
+    public class SubjectRepository : GenericRepository<Subject, int>, ISubjectRepository
     {
         private readonly StudyPlatformContext _context;
 
