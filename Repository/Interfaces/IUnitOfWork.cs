@@ -12,6 +12,7 @@ namespace Repository.Interfaces
         public ISubjectRepository SubjectRepository { get; }
 
         public ITopicRepository TopicRepository { get; }
+        public IBoughtSubjectRepository BoughtSubjectRepository { get; }
         Task<int> SaveChangeAsync();
 
 

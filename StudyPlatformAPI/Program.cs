@@ -1,4 +1,5 @@
 
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Repository.Interfaces;
@@ -7,6 +8,7 @@ using Service.Interfaces;
 using Service.Service;
 using StudyPlatform;
 using StudyPlatform.Models;
+using StudyPlatformAPI.MappingProfiles;
 using System.Text.Json.Serialization;
 
 namespace StudyPlatformAPI
@@ -38,11 +40,13 @@ namespace StudyPlatformAPI
             builder.Services.AddScoped<IChapterService, ChapterService>();
             builder.Services.AddScoped<IChapterRepository, ChapterRepository>();
             builder.Services.AddScoped<ITopicRepository, TopicRepository>();
+            builder.Services.AddScoped<IBoughtSubjectRepository, BoughtSubjectRepository>();
 
 
             builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
             builder.Services.AddScoped<ISubjectService, SubjectService>();
             builder.Services.AddScoped<ITopicService, TopicService>();
+            builder.Services.AddScoped<IBoughtSubjectService, BoughtSubjectService>();
 
             builder.Services.AddEndpointsApiExplorer();
 
@@ -58,6 +62,14 @@ namespace StudyPlatformAPI
             //                .AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
             //        });
             //});
+
+            var mapperConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<BoughtSubjectProfile>();
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            builder.Services.AddSingleton(mapper);
 
             var app = builder.Build();
 

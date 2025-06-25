@@ -9,15 +9,15 @@ public partial class BoughtSubject
 {
     public int Id { get; set; }
 
-    public DateOnly? PurchaseDate { get; set; }
+    public DateOnly PurchaseDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
 
     public string Feedback { get; set; }
 
-    public int? SubjectId { get; set; }
+    public int SubjectId { get; set; }
 
-    public int? UserId { get; set; }
+    public int UserId { get; set; }
 
-    public virtual ICollection<Progress> Progresses { get; set; } = new List<Progress>();
+    public virtual Progress Progress { get; set; }
 
     public virtual Subject Subject { get; set; }
 
