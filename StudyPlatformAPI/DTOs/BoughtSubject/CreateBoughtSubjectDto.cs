@@ -1,4 +1,4 @@
-﻿namespace StudyPlatformAPI.DTOs
+﻿namespace StudyPlatformAPI.DTOs.BoughtSubject
 {
     public class CreateBoughtSubjectDto
     {

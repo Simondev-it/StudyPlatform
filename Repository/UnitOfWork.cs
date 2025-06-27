@@ -15,14 +15,16 @@ namespace StudyPlatform
         private readonly ISubjectRepository _subjectRepository;
         private readonly ITopicRepository _topicRepository;
         private readonly IBoughtSubjectRepository _boughtSubjectRepository;
+        private readonly IProgressRepository _progressRepository;
 
-        public UnitOfWork(StudyPlatformContext context, IChapterRepository chapterRepository, ISubjectRepository subjectRepository, ITopicRepository topicRepository, IBoughtSubjectRepository boughtSubjectRepository)
+        public UnitOfWork(StudyPlatformContext context, IChapterRepository chapterRepository, ISubjectRepository subjectRepository, ITopicRepository topicRepository, IBoughtSubjectRepository boughtSubjectRepository, IProgressRepository progressRepository)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _chapterRepository = chapterRepository ?? throw new ArgumentNullException(nameof(chapterRepository));
             _subjectRepository = subjectRepository ?? throw new ArgumentNullException(nameof(subjectRepository));
             _topicRepository = topicRepository ?? throw new ArgumentNullException(nameof(topicRepository));
             _boughtSubjectRepository = boughtSubjectRepository;
+            _progressRepository = progressRepository;
         }
 
         public IChapterRepository ChapterRepository => _chapterRepository;
@@ -30,6 +32,7 @@ namespace StudyPlatform
 
         public ITopicRepository TopicRepository => _topicRepository;
         public IBoughtSubjectRepository BoughtSubjectRepository => _boughtSubjectRepository;
+        public IProgressRepository ProgressRepository => _progressRepository;
         public void Dispose()
         {
             _context.Dispose();

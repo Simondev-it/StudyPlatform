@@ -9,11 +9,11 @@ public partial class Progress
 {
     public int Id { get; set; }
 
-    public int? Chapter { get; set; }
+    public int Chapter { get; set; }
 
-    public int? Topic { get; set; }
+    public int Topic { get; set; }
 
-    public int? BoughtSubjectId { get; set; }
+    public int BoughtSubjectId { get; set; }
 
     public virtual BoughtSubject BoughtSubject { get; set; }
 }

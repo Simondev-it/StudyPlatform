@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
 using StudyPlatform.Models;
-using StudyPlatformAPI.DTOs;
+using StudyPlatformAPI.DTOs.BoughtSubject;
 
 namespace StudyPlatformAPI.Controllers;
 
@@ -25,7 +25,7 @@ public class BoughtSubjectController : ControllerBase
     {
         var boughtSubjects = await _boughtSubjectService.GetAllAsync();
 
-        var boughtSubjectsDto = _mapper.Map<IEnumerable<BoughtSubjectDto>>(boughtSubjects);
+        var boughtSubjectsDto = _mapper.Map<IEnumerable<BoughtSubjectResponseDto>>(boughtSubjects);
 
         return Ok(boughtSubjectsDto);
     }
@@ -41,7 +41,7 @@ public class BoughtSubjectController : ControllerBase
             return NotFound();
         }
 
-        var boughtSubjectDto = _mapper.Map<BoughtSubjectDto>(boughtSubject);
+        var boughtSubjectDto = _mapper.Map<BoughtSubjectResponseDto>(boughtSubject);
 
         return Ok(boughtSubjectDto);
     }
@@ -52,7 +52,7 @@ public class BoughtSubjectController : ControllerBase
     {
         var boughtSubjects = await _boughtSubjectService.GetByUserIdAsync(userId);
 
-        var boughtSubjectsDto = _mapper.Map<IEnumerable<BoughtSubjectDto>>(boughtSubjects);
+        var boughtSubjectsDto = _mapper.Map<IEnumerable<BoughtSubjectResponseDto>>(boughtSubjects);
 
         return Ok(boughtSubjectsDto);
     }
@@ -70,7 +70,7 @@ public class BoughtSubjectController : ControllerBase
         var boughtSubject = _mapper.Map<BoughtSubject>(dto);
         boughtSubject.PurchaseDate = DateOnly.FromDateTime(DateTime.UtcNow);
         var result = await _boughtSubjectService.AddAsync(boughtSubject);
-        return CreatedAtAction(nameof(GetById), new { id = result.Id }, _mapper.Map<BoughtSubjectDto>(result));
+        return CreatedAtAction(nameof(GetById), new { id = result.Id }, _mapper.Map<BoughtSubjectResponseDto>(result));
     }
 
     // DELETE: api/BoughtSubject/{id}
