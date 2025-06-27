@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
 using StudyPlatform.Models;
-using StudyPlatformAPI.DTOs.Progress;
+using StudyPlatformAPI.DTOs.ProgressDto;
 
 namespace StudyPlatformAPI.Controllers;
 

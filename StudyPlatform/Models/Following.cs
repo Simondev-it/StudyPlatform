@@ -15,7 +15,5 @@ public partial class Following
 
     public int UserId { get; set; }
 
-    public virtual User FollowingNavigation { get; set; }
-
     public virtual User User { get; set; }
 }

@@ -1,4 +1,4 @@
-﻿namespace StudyPlatformAPI.DTOs.Progress;
+﻿namespace StudyPlatformAPI.DTOs.ProgressDto;
 
 public class UpdateProgressDto
 {

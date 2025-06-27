@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
 using StudyPlatform.Models;
-using StudyPlatformAPI.DTOs.BoughtSubject;
+using StudyPlatformAPI.DTOs.BoughtSubjectDto;
 
 namespace StudyPlatformAPI.Controllers;
 
