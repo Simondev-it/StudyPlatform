@@ -42,33 +42,24 @@ public class Program
         builder.Services.AddScoped<ITopicRepository, TopicRepository>();
         builder.Services.AddScoped<IBoughtSubjectRepository, BoughtSubjectRepository>();
         builder.Services.AddScoped<IProgressRepository, ProgressRepository>();
-
+        builder.Services.AddScoped<ITopicProgressRepository, TopicProgressRepository>();
 
         builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
         builder.Services.AddScoped<ISubjectService, SubjectService>();
         builder.Services.AddScoped<ITopicService, TopicService>();
         builder.Services.AddScoped<IBoughtSubjectService, BoughtSubjectService>();
         builder.Services.AddScoped<IProgressService, ProgressService>();
-
+        builder.Services.AddScoped<ITopicProgressService, TopicProgressService>();
+      
         builder.Services.AddEndpointsApiExplorer();
 
         builder.Services.AddRouting(options => options.LowercaseUrls = true);
-
-        //builder.Services.AddCors(options =>
-        //{
-        //    options.AddPolicy("CorsPolicyDevelopement",
-        //        policy =>
-        //        {
-        //            policy
-        //                .AllowAnyOrigin()
-        //                .AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
-        //        });
-        //});
 
         var mapperConfig = new MapperConfiguration(cfg =>
         {
             cfg.AddProfile<BoughtSubjectProfile>();
             cfg.AddProfile<ProgressProfile>();
+            cfg.AddProfile<TopicProgressProfile>();
         });
 
         IMapper mapper = mapperConfig.CreateMapper();

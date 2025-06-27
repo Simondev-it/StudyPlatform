@@ -14,6 +14,7 @@ namespace Repository.Interfaces
         public ITopicRepository TopicRepository { get; }
         public IBoughtSubjectRepository BoughtSubjectRepository { get; }
         public IProgressRepository ProgressRepository { get; }
+        public ITopicProgressRepository TopicProgressRepository { get; }
         Task<int> SaveChangeAsync();
 
 
