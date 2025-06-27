@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
 using Service.Service;
 using StudyPlatform.Models;
-using StudyPlatformAPI.DTOs.BoughtSubject;
 using StudyPlatformAPI.DTOs.TopicProgress;
 
 namespace StudyPlatformAPI.Controllers
