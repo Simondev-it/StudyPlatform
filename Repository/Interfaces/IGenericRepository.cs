@@ -12,5 +12,7 @@ namespace Repository.Interfaces
         public Task<List<T>> GetAllAsync();
         public Task<T?> GetByIdAsync(TKey id);
 
+        public ValueTask<T> CreateAsync(T t);
+
      }
 }

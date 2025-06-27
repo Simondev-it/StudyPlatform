@@ -31,5 +31,12 @@ namespace Repository.Repositories
         public async Task<T?> GetByIdAsync(TKey id) => await _dbSet.FindAsync(id);
         
 
+        public async ValueTask<T> CreateAsync(T t)
+        {
+            var result = await _dbSet.AddAsync(t);
+            await _dbContext.SaveChangesAsync();
+            return result.Entity;
+        }
+
     }
 }
