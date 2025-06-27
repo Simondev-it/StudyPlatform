@@ -38,5 +38,28 @@ namespace Repository.Repositories
             return result.Entity;
         }
 
+
+        public async ValueTask<bool> UpdateAsync(T t)
+        {
+            _dbSet.Update(t);
+            return await SaveChangesAsync();
+        }
+
+        private async ValueTask<bool> SaveChangesAsync()
+        {
+            try
+            {
+                return await _dbContext.SaveChangesAsync() > 0;
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return false;
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+        }
+
     }
 }

@@ -14,5 +14,7 @@ namespace Repository.Interfaces
 
         public ValueTask<T> CreateAsync(T t);
 
+        public ValueTask<bool> UpdateAsync(T t);
+
      }
 }

@@ -24,6 +24,21 @@ namespace Service.Service
              return await _unitOfWork.TopicProgressRepository.CreateAsync(topicProgress);
         }
 
-        
+        public async Task<List<TopicProgress>> GetAllTopicProgressAsync()
+        {
+            return await _unitOfWork.TopicProgressRepository.GetAllAsync();
+        }
+
+        public async Task<TopicProgress?> GetTopicProgressByIdAsync(int id)
+        {
+            return await _unitOfWork.TopicProgressRepository.GetByIdAsync(id);
+        }
+
+        public async Task<bool> UpdateTopicProgressAsync(TopicProgress topicProgress)
+        {
+            return await _unitOfWork.TopicProgressRepository.UpdateAsync(topicProgress);
+        }
+
+
     }
 }

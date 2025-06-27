@@ -8,7 +8,7 @@ namespace StudyPlatformAPI.DTOs.TopicProgress
         //public int id { get; set; }
         public int Score { get; set; }
 
-        public DateOnly? StartDate { get; set; }
+         
 
         public int UserId { get; set; }
 

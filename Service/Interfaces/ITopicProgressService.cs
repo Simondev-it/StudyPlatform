@@ -10,5 +10,9 @@ namespace Service.Interfaces
     public interface ITopicProgressService
     {
         public Task<TopicProgress> CreateTopicProgressAsync(TopicProgress topicProgress);
+        public Task<List<TopicProgress>> GetAllTopicProgressAsync();
+        public Task<TopicProgress?> GetTopicProgressByIdAsync(int id);
+        public Task<bool> UpdateTopicProgressAsync(TopicProgress topicProgress);
+        
     }
 }
