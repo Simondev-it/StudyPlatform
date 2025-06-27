@@ -43,6 +43,7 @@ namespace StudyPlatformAPI
             builder.Services.AddScoped<IBoughtSubjectRepository, BoughtSubjectRepository>();
             builder.Services.AddScoped<IProgressRepository, ProgressRepository>();
             builder.Services.AddScoped<ITopicProgressRepository, TopicProgressRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
             builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
@@ -52,6 +53,7 @@ namespace StudyPlatformAPI
             builder.Services.AddScoped<IProgressService, ProgressService>();
 
             builder.Services.AddScoped<ITopicProgressService, TopicProgressService>();
+            builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddEndpointsApiExplorer();
 
 
@@ -63,6 +65,7 @@ namespace StudyPlatformAPI
                 cfg.AddProfile<BoughtSubjectProfile>();
                 cfg.AddProfile<ProgressProfile>();
                 cfg.AddProfile<TopicProgressProfile>();
+                cfg.AddProfile<UserProfile>();
             });
 
             IMapper mapper = mapperConfig.CreateMapper();

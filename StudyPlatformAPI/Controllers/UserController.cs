@@ -1,0 +1,84 @@
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Service.Interfaces;
+using Service.Service;
+using StudyPlatform.Models;
+using StudyPlatformAPI.DTOs.TopicProgress;
+using StudyPlatformAPI.DTOs.User;
+
+namespace StudyPlatformAPI.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class UserController : ControllerBase
+    {
+        private readonly IUserService _userService;
+        private readonly IMapper _mapper;
+
+        public UserController(IUserService userService, IMapper mapper)
+        {
+            _userService = userService;
+            _mapper = mapper;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUserById(int id)
+        {
+            var user = await _userService.GetUserByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(_mapper.Map<UserResponseDTO>(user));
+        }
+
+        [HttpGet("noPass/{id}")]
+        public async Task<IActionResult> GetUserNoPasswordById(int id)
+        {
+            var user = await _userService.GetUserByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(_mapper.Map<UserResponseNoPasswordDTO>(user));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var users = await _userService.GetAllUsersAsync();
+            return Ok(_mapper.Map<List<UserResponseDTO>>(users));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateUser(UserCreateDTO userCreateDto)
+        {
+            var user = _mapper.Map<User>(userCreateDto);
+            var createdUser = await _userService.CreateUserAsync(user);
+            return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, _mapper.Map<UserResponseDTO>(createdUser));
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateUser(int id, UserCreateDTO userUpdateDto)
+        {
+            var existingUser = await _userService.GetUserByIdAsync(id);
+            if (existingUser == null)
+            {
+                return NotFound();
+            }
+
+            // Map the DTO to the existing TopicProgress entity
+            _mapper.Map(userUpdateDto, existingUser);
+
+
+            var result = await _userService.UpdateUserAsync(existingUser);
+            if (!result)
+            {
+                return BadRequest("Failed to update user.");
+            }
+
+            return Ok(_mapper.Map<UserResponseDTO>(existingUser));
+
+        }
+        }
+}
