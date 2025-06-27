@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using StudyPlatform.Models;
-using StudyPlatformAPI.DTOs.Progress;
+using StudyPlatformAPI.DTOs.ProgressDto;
 
 namespace StudyPlatformAPI.MappingProfiles;
 

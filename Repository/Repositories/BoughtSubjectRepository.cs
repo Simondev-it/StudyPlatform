@@ -40,6 +40,7 @@ public class BoughtSubjectRepository : IBoughtSubjectRepository
         return await _context.BoughtSubjects
                              .Include(bs => bs.Subject)
                              .Include(bs => bs.User)
+                             .Include(bs => bs.Progress)
                              .ToListAsync();
     }
 
@@ -48,6 +49,7 @@ public class BoughtSubjectRepository : IBoughtSubjectRepository
         return await _context.BoughtSubjects
                              .Include(bs => bs.Subject)
                              .Include(bs => bs.User)
+                             .Include(bs => bs.Progress)
                              .FirstOrDefaultAsync(bs => bs.Id == id);
     }
 
@@ -55,6 +57,7 @@ public class BoughtSubjectRepository : IBoughtSubjectRepository
     {
         return await _context.BoughtSubjects
                              .Include(bs => bs.Subject)
+                             .Include(bs => bs.Progress)
                              .Where(bs => bs.UserId == userId)
                              .ToListAsync();
     }

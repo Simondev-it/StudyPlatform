@@ -11,84 +11,80 @@ using StudyPlatform.Models;
 using StudyPlatformAPI.MappingProfiles;
 using System.Text.Json.Serialization;
 
-namespace StudyPlatformAPI
+namespace StudyPlatformAPI;
+
+public class Program
 {
-    public class Program
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
+        var builder = WebApplication.CreateBuilder(args);
+
+        // Add services to the container.
+
+        builder.Services.AddControllers()
+        .AddJsonOptions(options =>
         {
-            var builder = WebApplication.CreateBuilder(args);
+            options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        });
+        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
 
-            // Add services to the container.
+        builder.Services.AddDbContext<StudyPlatformContext>(options =>
+        {
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+        });
 
-            builder.Services.AddControllers()
-            .AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-            });
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+        builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            builder.Services.AddDbContext<StudyPlatformContext>(options =>
-            {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-            });
+        builder.Services.AddScoped<IChapterService, ChapterService>();
+        builder.Services.AddScoped<IChapterRepository, ChapterRepository>();
+        builder.Services.AddScoped<ITopicRepository, TopicRepository>();
+        builder.Services.AddScoped<IBoughtSubjectRepository, BoughtSubjectRepository>();
+        builder.Services.AddScoped<IProgressRepository, ProgressRepository>();
+        builder.Services.AddScoped<ITopicProgressRepository, TopicProgressRepository>();
 
-            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+        builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
+        builder.Services.AddScoped<ISubjectService, SubjectService>();
+        builder.Services.AddScoped<ITopicService, TopicService>();
+        builder.Services.AddScoped<IBoughtSubjectService, BoughtSubjectService>();
+        builder.Services.AddScoped<IProgressService, ProgressService>();
+        builder.Services.AddScoped<ITopicProgressService, TopicProgressService>();
+      
+        builder.Services.AddEndpointsApiExplorer();
 
-            builder.Services.AddScoped<IChapterService, ChapterService>();
-            builder.Services.AddScoped<IChapterRepository, ChapterRepository>();
-            builder.Services.AddScoped<ITopicRepository, TopicRepository>();
-            builder.Services.AddScoped<IBoughtSubjectRepository, BoughtSubjectRepository>();
-            builder.Services.AddScoped<IProgressRepository, ProgressRepository>();
-            builder.Services.AddScoped<ITopicProgressRepository, TopicProgressRepository>();
+        builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
+        var mapperConfig = new MapperConfiguration(cfg =>
+        {
+            cfg.AddProfile<BoughtSubjectProfile>();
+            cfg.AddProfile<ProgressProfile>();
+            cfg.AddProfile<TopicProgressProfile>();
+        });
 
-            builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
-            builder.Services.AddScoped<ISubjectService, SubjectService>();
-            builder.Services.AddScoped<ITopicService, TopicService>();
-            builder.Services.AddScoped<IBoughtSubjectService, BoughtSubjectService>();
-            builder.Services.AddScoped<IProgressService, ProgressService>();
+        IMapper mapper = mapperConfig.CreateMapper();
+        builder.Services.AddSingleton(mapper);
 
-            builder.Services.AddScoped<ITopicProgressService, TopicProgressService>();
-            builder.Services.AddEndpointsApiExplorer();
+        var app = builder.Build();
 
-
-            builder.Services.AddRouting(options => options.LowercaseUrls = true);
-             
-
-            var mapperConfig = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile<BoughtSubjectProfile>();
-                cfg.AddProfile<ProgressProfile>();
-                cfg.AddProfile<TopicProgressProfile>();
-            });
-
-            IMapper mapper = mapperConfig.CreateMapper();
-            builder.Services.AddSingleton(mapper);
-
-            var app = builder.Build();
-
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-
-            app.UseCors(options => options.WithOrigins("http://localhost:5173")
-                                          .AllowAnyMethod()
-                                          .AllowAnyHeader());
-
-            app.UseHttpsRedirection();
-
-            app.UseAuthorization();
-
-
-            app.MapControllers();
-
-            app.Run();
+        // Configure the HTTP request pipeline.
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
         }
+
+        app.UseCors(options => options.WithOrigins("http://localhost:5173")
+                                      .AllowAnyMethod()
+                                      .AllowAnyHeader());
+
+        app.UseHttpsRedirection();
+
+        app.UseAuthorization();
+
+
+        app.MapControllers();
+
+        app.Run();
     }
 }
