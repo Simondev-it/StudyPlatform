@@ -19,11 +19,11 @@ public partial class Question
 
     public string Answers { get; set; }
 
-    public string Explaination { get; set; }
+    public string Explanation { get; set; }
 
     public string Note { get; set; }
 
-    public int? TopicId { get; set; }
+    public int TopicId { get; set; }
 
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
 

@@ -9,13 +9,13 @@ public partial class TopicProgress
 {
     public int Id { get; set; }
 
-    public int? Score { get; set; }
+    public int Score { get; set; }
 
     public DateOnly? StartDate { get; set; }
 
-    public int? UserId { get; set; }
+    public int UserId { get; set; }
 
-    public int? TopicId { get; set; }
+    public int TopicId { get; set; }
 
     public virtual Topic Topic { get; set; }
 

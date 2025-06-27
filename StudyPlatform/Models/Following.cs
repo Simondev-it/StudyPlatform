@@ -11,9 +11,9 @@ public partial class Following
 
     public DateOnly? FollowDate { get; set; }
 
-    public int? FollowingId { get; set; }
+    public int FollowingId { get; set; }
 
-    public int? UserId { get; set; }
+    public int UserId { get; set; }
 
     public virtual User FollowingNavigation { get; set; }
 

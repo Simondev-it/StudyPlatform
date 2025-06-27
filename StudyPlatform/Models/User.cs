@@ -21,21 +21,19 @@ public partial class User
 
     public string Email { get; set; }
 
-    public int? Point { get; set; }
+    public int Point { get; set; }
 
     public DateOnly? JoinedDate { get; set; }
 
-    public int? DayStreak { get; set; }
+    public int DayStreak { get; set; }
 
-    public int? HighestDayStreak { get; set; }
+    public int HighestDayStreak { get; set; }
 
     public virtual ICollection<AccomplishAchievement> AccomplishAchievements { get; set; } = new List<AccomplishAchievement>();
 
     public virtual ICollection<BoughtSubject> BoughtSubjects { get; set; } = new List<BoughtSubject>();
 
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
-
-    public virtual ICollection<Following> FollowingFollowingNavigations { get; set; } = new List<Following>();
 
     public virtual ICollection<Following> FollowingUsers { get; set; } = new List<Following>();
 

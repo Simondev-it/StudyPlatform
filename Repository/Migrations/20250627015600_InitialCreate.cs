@@ -32,7 +32,7 @@ namespace Repository.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    Price = table.Column<int>(type: "int", nullable: true),
+                    Price = table.Column<int>(type: "int", nullable: false),
                     UploadDate = table.Column<DateOnly>(type: "date", nullable: true),
                     LastEditDate = table.Column<DateOnly>(type: "date", nullable: true)
                 },
@@ -53,10 +53,10 @@ namespace Repository.Migrations
                     Role = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     CuratorId = table.Column<int>(type: "int", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    Point = table.Column<int>(type: "int", nullable: true),
+                    Point = table.Column<int>(type: "int", nullable: false),
                     JoinedDate = table.Column<DateOnly>(type: "date", nullable: true),
-                    DayStreak = table.Column<int>(type: "int", nullable: true),
-                    HighestDayStreak = table.Column<int>(type: "int", nullable: true)
+                    DayStreak = table.Column<int>(type: "int", nullable: false),
+                    HighestDayStreak = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -69,9 +69,9 @@ namespace Repository.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Number = table.Column<int>(type: "int", nullable: true),
+                    Number = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    SubjectId = table.Column<int>(type: "int", nullable: true)
+                    SubjectId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -80,7 +80,8 @@ namespace Repository.Migrations
                         name: "FK__Chapter__Subject__398D8EEE",
                         column: x => x.SubjectId,
                         principalTable: "Subject",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -89,11 +90,11 @@ namespace Repository.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Progress = table.Column<int>(type: "int", nullable: true),
+                    Progress = table.Column<int>(type: "int", nullable: false),
                     AchieveDate = table.Column<DateOnly>(type: "date", nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: true),
-                    AchievementId = table.Column<int>(type: "int", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: true)
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    AchievementId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -102,12 +103,14 @@ namespace Repository.Migrations
                         name: "FK__Accomplis__Achie__5441852A",
                         column: x => x.AchievementId,
                         principalTable: "Achievement",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK__Accomplis__UserI__5535A963",
                         column: x => x.UserId,
                         principalTable: "User",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -145,22 +148,24 @@ namespace Repository.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FollowDate = table.Column<DateOnly>(type: "date", nullable: true),
-                    FollowingId = table.Column<int>(type: "int", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: true)
+                    FollowingId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    FollowingNavigationId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK__Followin__3214EC07F7E6389C", x => x.Id);
                     table.ForeignKey(
-                        name: "FK__Following__Follo__5812160E",
-                        column: x => x.FollowingId,
+                        name: "FK_Following_User_FollowingNavigationId",
+                        column: x => x.FollowingNavigationId,
                         principalTable: "User",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK__Following__UserI__59063A47",
                         column: x => x.UserId,
                         principalTable: "User",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -169,9 +174,9 @@ namespace Repository.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Number = table.Column<int>(type: "int", nullable: true),
+                    Number = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    ChapterId = table.Column<int>(type: "int", nullable: true)
+                    ChapterId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -180,7 +185,8 @@ namespace Repository.Migrations
                         name: "FK__Topic__ChapterId__3C69FB99",
                         column: x => x.ChapterId,
                         principalTable: "Chapter",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -189,9 +195,9 @@ namespace Repository.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Chapter = table.Column<int>(type: "int", nullable: true),
-                    Topic = table.Column<int>(type: "int", nullable: true),
-                    BoughtSubjectId = table.Column<int>(type: "int", nullable: true)
+                    Chapter = table.Column<int>(type: "int", nullable: false),
+                    Topic = table.Column<int>(type: "int", nullable: false),
+                    BoughtSubjectId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -200,7 +206,8 @@ namespace Repository.Migrations
                         name: "FK__Progress__Bought__4BAC3F29",
                         column: x => x.BoughtSubjectId,
                         principalTable: "BoughtSubject",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -214,9 +221,9 @@ namespace Repository.Migrations
                     Question = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     CorrectAnswer = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     Answers = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    Explaination = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Explanation = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     Note = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    TopicId = table.Column<int>(type: "int", nullable: true)
+                    TopicId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -225,7 +232,8 @@ namespace Repository.Migrations
                         name: "FK__Question__TopicI__3F466844",
                         column: x => x.TopicId,
                         principalTable: "Topic",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -234,10 +242,10 @@ namespace Repository.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Score = table.Column<int>(type: "int", nullable: true),
+                    Score = table.Column<int>(type: "int", nullable: false),
                     StartDate = table.Column<DateOnly>(type: "date", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: true),
-                    TopicId = table.Column<int>(type: "int", nullable: true)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    TopicId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -246,12 +254,14 @@ namespace Repository.Migrations
                         name: "FK__TopicProg__Topic__4F7CD00D",
                         column: x => x.TopicId,
                         principalTable: "Topic",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK__TopicProg__UserI__4E88ABD4",
                         column: x => x.UserId,
                         principalTable: "User",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -261,10 +271,10 @@ namespace Repository.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Content = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    Answer = table.Column<int>(type: "int", nullable: true),
+                    Answer = table.Column<int>(type: "int", nullable: false),
                     CommentDate = table.Column<DateOnly>(type: "date", nullable: true),
-                    QuestionId = table.Column<int>(type: "int", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: true)
+                    QuestionId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -273,12 +283,14 @@ namespace Repository.Migrations
                         name: "FK__Comment__Questio__440B1D61",
                         column: x => x.QuestionId,
                         principalTable: "Question",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK__Comment__UserId__44FF419A",
                         column: x => x.UserId,
                         principalTable: "User",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -317,9 +329,9 @@ namespace Repository.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Following_FollowingId",
+                name: "IX_Following_FollowingNavigationId",
                 table: "Following",
-                column: "FollowingId");
+                column: "FollowingNavigationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Following_UserId",
@@ -330,8 +342,7 @@ namespace Repository.Migrations
                 name: "IX_Progress_BoughtSubjectId",
                 table: "Progress",
                 column: "BoughtSubjectId",
-                unique: true,
-                filter: "[BoughtSubjectId] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Question_TopicId",
