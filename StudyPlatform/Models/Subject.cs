@@ -11,7 +11,7 @@ public partial class Subject
 
     public string Name { get; set; }
 
-    public int? Price { get; set; }
+    public int Price { get; set; }
 
     public DateOnly? UploadDate { get; set; }
 

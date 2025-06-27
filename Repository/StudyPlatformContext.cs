@@ -117,10 +117,6 @@ public partial class StudyPlatformContext : DbContext
 
             entity.ToTable("Following");
 
-            entity.HasOne(d => d.FollowingNavigation).WithMany(p => p.FollowingFollowingNavigations)
-                .HasForeignKey(d => d.FollowingId)
-                .HasConstraintName("FK__Following__Follo__5812160E");
-
             entity.HasOne(d => d.User).WithMany(p => p.FollowingUsers)
                 .HasForeignKey(d => d.UserId)
                 .HasConstraintName("FK__Following__UserI__59063A47");
@@ -147,7 +143,7 @@ public partial class StudyPlatformContext : DbContext
 
             entity.Property(e => e.Answers).HasMaxLength(255);
             entity.Property(e => e.CorrectAnswer).HasMaxLength(255);
-            entity.Property(e => e.Explaination).HasMaxLength(255);
+            entity.Property(e => e.Explanation).HasMaxLength(255);
             entity.Property(e => e.Note).HasMaxLength(255);
             entity.Property(e => e.Question1)
                 .HasMaxLength(255)

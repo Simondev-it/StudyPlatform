@@ -33,16 +33,16 @@ namespace Repository.Migrations
                     b.Property<DateOnly?>("AchieveDate")
                         .HasColumnType("date");
 
-                    b.Property<int?>("AchievementId")
+                    b.Property<int>("AchievementId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Progress")
+                    b.Property<int>("Progress")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Status")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id")
@@ -120,10 +120,10 @@ namespace Repository.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int?>("Number")
+                    b.Property<int>("Number")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SubjectId")
+                    b.Property<int>("SubjectId")
                         .HasColumnType("int");
 
                     b.HasKey("Id")
@@ -142,7 +142,7 @@ namespace Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("Answer")
+                    b.Property<int>("Answer")
                         .HasColumnType("int");
 
                     b.Property<DateOnly?>("CommentDate")
@@ -152,10 +152,10 @@ namespace Repository.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int?>("QuestionId")
+                    b.Property<int>("QuestionId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id")
@@ -179,16 +179,19 @@ namespace Repository.Migrations
                     b.Property<DateOnly?>("FollowDate")
                         .HasColumnType("date");
 
-                    b.Property<int?>("FollowingId")
+                    b.Property<int>("FollowingId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int?>("FollowingNavigationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id")
                         .HasName("PK__Followin__3214EC07F7E6389C");
 
-                    b.HasIndex("FollowingId");
+                    b.HasIndex("FollowingNavigationId");
 
                     b.HasIndex("UserId");
 
@@ -203,21 +206,20 @@ namespace Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("BoughtSubjectId")
+                    b.Property<int>("BoughtSubjectId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Chapter")
+                    b.Property<int>("Chapter")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Topic")
+                    b.Property<int>("Topic")
                         .HasColumnType("int");
 
                     b.HasKey("Id")
                         .HasName("PK__Progress__3214EC0788BB66A6");
 
                     b.HasIndex("BoughtSubjectId")
-                        .IsUnique()
-                        .HasFilter("[BoughtSubjectId] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Progress", (string)null);
                 });
@@ -238,7 +240,7 @@ namespace Repository.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("Explaination")
+                    b.Property<string>("Explanation")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
@@ -254,7 +256,7 @@ namespace Repository.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("Question");
 
-                    b.Property<int?>("TopicId")
+                    b.Property<int>("TopicId")
                         .HasColumnType("int");
 
                     b.Property<string>("Type")
@@ -284,7 +286,7 @@ namespace Repository.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int?>("Price")
+                    b.Property<int>("Price")
                         .HasColumnType("int");
 
                     b.Property<DateOnly?>("UploadDate")
@@ -304,14 +306,14 @@ namespace Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ChapterId")
+                    b.Property<int>("ChapterId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int?>("Number")
+                    b.Property<int>("Number")
                         .HasColumnType("int");
 
                     b.HasKey("Id")
@@ -330,16 +332,16 @@ namespace Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("Score")
+                    b.Property<int>("Score")
                         .HasColumnType("int");
 
                     b.Property<DateOnly?>("StartDate")
                         .HasColumnType("date");
 
-                    b.Property<int?>("TopicId")
+                    b.Property<int>("TopicId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id")
@@ -363,14 +365,14 @@ namespace Repository.Migrations
                     b.Property<int?>("CuratorId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DayStreak")
+                    b.Property<int>("DayStreak")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int?>("HighestDayStreak")
+                    b.Property<int>("HighestDayStreak")
                         .HasColumnType("int");
 
                     b.Property<DateOnly?>("JoinedDate")
@@ -384,7 +386,7 @@ namespace Repository.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int?>("Point")
+                    b.Property<int>("Point")
                         .HasColumnType("int");
 
                     b.Property<string>("Role")
@@ -406,11 +408,15 @@ namespace Repository.Migrations
                     b.HasOne("StudyPlatform.Models.Achievement", "Achievement")
                         .WithMany("AccomplishAchievements")
                         .HasForeignKey("AchievementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("FK__Accomplis__Achie__5441852A");
 
                     b.HasOne("StudyPlatform.Models.User", "User")
                         .WithMany("AccomplishAchievements")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("FK__Accomplis__UserI__5535A963");
 
                     b.Navigation("Achievement");
@@ -444,6 +450,8 @@ namespace Repository.Migrations
                     b.HasOne("StudyPlatform.Models.Subject", "Subject")
                         .WithMany("Chapters")
                         .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("FK__Chapter__Subject__398D8EEE");
 
                     b.Navigation("Subject");
@@ -454,11 +462,15 @@ namespace Repository.Migrations
                     b.HasOne("StudyPlatform.Models.Question", "Question")
                         .WithMany("Comments")
                         .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("FK__Comment__Questio__440B1D61");
 
                     b.HasOne("StudyPlatform.Models.User", "User")
                         .WithMany("Comments")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("FK__Comment__UserId__44FF419A");
 
                     b.Navigation("Question");
@@ -469,13 +481,14 @@ namespace Repository.Migrations
             modelBuilder.Entity("StudyPlatform.Models.Following", b =>
                 {
                     b.HasOne("StudyPlatform.Models.User", "FollowingNavigation")
-                        .WithMany("FollowingFollowingNavigations")
-                        .HasForeignKey("FollowingId")
-                        .HasConstraintName("FK__Following__Follo__5812160E");
+                        .WithMany()
+                        .HasForeignKey("FollowingNavigationId");
 
                     b.HasOne("StudyPlatform.Models.User", "User")
                         .WithMany("FollowingUsers")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("FK__Following__UserI__59063A47");
 
                     b.Navigation("FollowingNavigation");
@@ -488,6 +501,8 @@ namespace Repository.Migrations
                     b.HasOne("StudyPlatform.Models.BoughtSubject", "BoughtSubject")
                         .WithOne("Progress")
                         .HasForeignKey("StudyPlatform.Models.Progress", "BoughtSubjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("FK__Progress__Bought__4BAC3F29");
 
                     b.Navigation("BoughtSubject");
@@ -498,6 +513,8 @@ namespace Repository.Migrations
                     b.HasOne("StudyPlatform.Models.Topic", "Topic")
                         .WithMany("Questions")
                         .HasForeignKey("TopicId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("FK__Question__TopicI__3F466844");
 
                     b.Navigation("Topic");
@@ -508,6 +525,8 @@ namespace Repository.Migrations
                     b.HasOne("StudyPlatform.Models.Chapter", "Chapter")
                         .WithMany("Topics")
                         .HasForeignKey("ChapterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("FK__Topic__ChapterId__3C69FB99");
 
                     b.Navigation("Chapter");
@@ -518,11 +537,15 @@ namespace Repository.Migrations
                     b.HasOne("StudyPlatform.Models.Topic", "Topic")
                         .WithMany("TopicProgresses")
                         .HasForeignKey("TopicId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("FK__TopicProg__Topic__4F7CD00D");
 
                     b.HasOne("StudyPlatform.Models.User", "User")
                         .WithMany("TopicProgresses")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("FK__TopicProg__UserI__4E88ABD4");
 
                     b.Navigation("Topic");
@@ -571,8 +594,6 @@ namespace Repository.Migrations
                     b.Navigation("BoughtSubjects");
 
                     b.Navigation("Comments");
-
-                    b.Navigation("FollowingFollowingNavigations");
 
                     b.Navigation("FollowingUsers");
 

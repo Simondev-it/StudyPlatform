@@ -9,11 +9,11 @@ public partial class Topic
 {
     public int Id { get; set; }
 
-    public int? Number { get; set; }
+    public int Number { get; set; }
 
     public string Name { get; set; }
 
-    public int? ChapterId { get; set; }
+    public int ChapterId { get; set; }
 
     public virtual Chapter Chapter { get; set; }
 
