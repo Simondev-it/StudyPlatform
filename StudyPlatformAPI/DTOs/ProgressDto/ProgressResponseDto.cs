@@ -1,7 +1,9 @@
-﻿namespace StudyPlatformAPI.DTOs.Progress;
+﻿namespace StudyPlatformAPI.DTOs.ProgressDto;
 
-public class CreateProgressDto
+public class ProgressResponseDto
 {
+    public int Id { get; set; }
+
     public int Chapter { get; set; }
 
     public int Topic { get; set; }
