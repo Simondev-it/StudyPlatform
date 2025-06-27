@@ -1,6 +1,6 @@
-﻿namespace StudyPlatformAPI.DTOs
+﻿namespace StudyPlatformAPI.DTOs.BoughtSubject
 {
-    public class BoughtSubjectDto
+    public class BoughtSubjectResponseDto
     {
         public int Id { get; set; }
 
