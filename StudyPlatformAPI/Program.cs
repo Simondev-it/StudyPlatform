@@ -37,11 +37,13 @@ namespace StudyPlatformAPI
             builder.Services.AddScoped<IChapterService, ChapterService>();
             builder.Services.AddScoped<IChapterRepository, ChapterRepository>();
             builder.Services.AddScoped<ITopicRepository, TopicRepository>();
+            builder.Services.AddScoped<ITopicProgressRepository, TopicProgressRepository>();
 
 
             builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
             builder.Services.AddScoped<ISubjectService, SubjectService>();
             builder.Services.AddScoped<ITopicService, TopicService>();
+            builder.Services.AddScoped<ITopicProgressService, TopicProgressService>();
 
             var app = builder.Build();
 

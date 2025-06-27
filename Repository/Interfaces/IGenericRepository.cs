@@ -11,5 +11,7 @@ namespace Repository.Interfaces
     {
         public Task<List<T >> GetAllAsync(Expression<Func<T , bool>>? predicate = null!, params Expression<Func<T , object>>[] includes);
 
+        public ValueTask<T> CreateAsync(T t);
+
      }
 }

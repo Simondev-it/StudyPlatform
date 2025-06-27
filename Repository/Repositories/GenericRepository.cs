@@ -21,7 +21,7 @@ namespace Repository.Repositories
             _dbContext = dbContext;
             _dbSet = _dbContext.Set<T>();
         }
-
+         
         public Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? predicate = null, params Expression<Func<T, object>>[] includes)
         {
             IQueryable<T> query = _dbSet;
@@ -35,6 +35,13 @@ namespace Repository.Repositories
             }
 
             return query.ToListAsync();
+        }
+
+        public async ValueTask<T> CreateAsync(T t)
+        {
+            var result = await _dbSet.AddAsync(t);
+            await _dbContext.SaveChangesAsync();
+            return result.Entity;
         }
 
     }
