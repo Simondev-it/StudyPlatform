@@ -18,8 +18,9 @@ namespace StudyPlatform
         private readonly IBoughtSubjectRepository _boughtSubjectRepository;
         private readonly IProgressRepository _progressRepository;
         private readonly ITopicProgressRepository _topicProgressRepository;
+        private readonly IUserRepository _userProgressRepository;
 
-        public UnitOfWork(StudyPlatformContext context, IChapterRepository chapterRepository, ISubjectRepository subjectRepository, ITopicRepository topicRepository, IBoughtSubjectRepository boughtSubjectRepository, IProgressRepository progressRepository, ITopicProgressRepository topicProgressRepository)
+        public UnitOfWork(StudyPlatformContext context, IChapterRepository chapterRepository, ISubjectRepository subjectRepository, ITopicRepository topicRepository, IBoughtSubjectRepository boughtSubjectRepository, IProgressRepository progressRepository, ITopicProgressRepository topicProgressRepository, IUserRepository userProgressRepository)
         {
             _context = context;
             _chapterRepository = chapterRepository;
@@ -28,8 +29,8 @@ namespace StudyPlatform
             _boughtSubjectRepository = boughtSubjectRepository;
             _progressRepository = progressRepository;
             _topicProgressRepository = topicProgressRepository;
+            _userProgressRepository = userProgressRepository;
         }
-
 
         public IChapterRepository ChapterRepository => _chapterRepository;
         public ISubjectRepository SubjectRepository => _subjectRepository;
@@ -38,6 +39,7 @@ namespace StudyPlatform
         public IBoughtSubjectRepository BoughtSubjectRepository => _boughtSubjectRepository;
         public IProgressRepository ProgressRepository => _progressRepository;
         public ITopicProgressRepository TopicProgressRepository => _topicProgressRepository;
+        public IUserRepository UserRepository => _userProgressRepository;
         public void Dispose()
         {
             _context.Dispose();
