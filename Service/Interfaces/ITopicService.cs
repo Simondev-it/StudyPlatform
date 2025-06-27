@@ -10,5 +10,7 @@ namespace Service.Interfaces
     public interface ITopicService
     {
         Task<List<Topic>> GetAllTopicsAsync();
+
+        Task<Topic> GetTopicsByIdAsync(int id);
     }
 }

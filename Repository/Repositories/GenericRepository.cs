@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Repositories
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    public class GenericRepository<T, TKey> : IGenericRepository<T, TKey> where T : class where TKey : IEquatable<TKey>
     {
 
         private readonly StudyPlatformContext _dbContext;
@@ -21,21 +21,15 @@ namespace Repository.Repositories
             _dbContext = dbContext;
             _dbSet = _dbContext.Set<T>();
         }
-         
-        public Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? predicate = null, params Expression<Func<T, object>>[] includes)
+
+        public Task<List<T>> GetAllAsync()
         {
             IQueryable<T> query = _dbSet;
-            if (predicate != null)
-            {
-                query = query.Where(predicate);
-            }
-            foreach (var include in includes)
-            {
-                query = query.Include(include);
-            }
-
             return query.ToListAsync();
         }
+
+        public async Task<T?> GetByIdAsync(TKey id) => await _dbSet.FindAsync(id);
+        
 
         public async ValueTask<T> CreateAsync(T t)
         {

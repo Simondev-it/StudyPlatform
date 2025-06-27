@@ -15,22 +15,28 @@ namespace StudyPlatform
         private readonly IChapterRepository _chapterRepository;
         private readonly ISubjectRepository _subjectRepository;
         private readonly ITopicRepository _topicRepository;
+        private readonly IBoughtSubjectRepository _boughtSubjectRepository;
+        private readonly IProgressRepository _progressRepository;
         private readonly ITopicProgressRepository _topicProgressRepository;
 
-
-        public UnitOfWork(StudyPlatformContext context, IChapterRepository chapterRepository, ISubjectRepository subjectRepository, ITopicRepository topicRepository, ITopicProgressRepository topicProgressRepository)
+        public UnitOfWork(StudyPlatformContext context, IChapterRepository chapterRepository, ISubjectRepository subjectRepository, ITopicRepository topicRepository, IBoughtSubjectRepository boughtSubjectRepository, IProgressRepository progressRepository, ITopicProgressRepository topicProgressRepository)
         {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
-            _chapterRepository = chapterRepository ?? throw new ArgumentNullException(nameof(chapterRepository));
-            _subjectRepository = subjectRepository ?? throw new ArgumentNullException(nameof(subjectRepository));
-            _topicRepository = topicRepository ?? throw new ArgumentNullException(nameof(topicRepository));
-            _topicProgressRepository = topicProgressRepository ?? throw new ArgumentNullException(nameof(topicProgressRepository));
+            _context = context;
+            _chapterRepository = chapterRepository;
+            _subjectRepository = subjectRepository;
+            _topicRepository = topicRepository;
+            _boughtSubjectRepository = boughtSubjectRepository;
+            _progressRepository = progressRepository;
+            _topicProgressRepository = topicProgressRepository;
         }
+
 
         public IChapterRepository ChapterRepository => _chapterRepository;
         public ISubjectRepository SubjectRepository => _subjectRepository;
 
         public ITopicRepository TopicRepository => _topicRepository;
+        public IBoughtSubjectRepository BoughtSubjectRepository => _boughtSubjectRepository;
+        public IProgressRepository ProgressRepository => _progressRepository;
         public ITopicProgressRepository TopicProgressRepository => _topicProgressRepository;
         public void Dispose()
         {

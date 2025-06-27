@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Interfaces
 {
-    public interface IChapterRepository : IGenericRepository<Chapter>
+    public interface IChapterRepository : IGenericRepository<Chapter, int>
     {
     }
 }

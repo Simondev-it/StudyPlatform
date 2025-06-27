@@ -21,8 +21,9 @@ namespace Service.Service
 
         public async Task<TopicProgress> CreateTopicProgressAsync(TopicProgress topicProgress)
         {
-            var chapters = await _unitOfWork.TopicProgressRepository.CreateAsync(topicProgress);
-            return chapters;
+             return await _unitOfWork.TopicProgressRepository.CreateAsync(topicProgress);
         }
+
+        
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Interfaces
 {
-    public interface ITopicProgressRepository : IGenericRepository<TopicProgress>
+    public interface ITopicProgressRepository : IGenericRepository<TopicProgress, int>
     {
      }
 }

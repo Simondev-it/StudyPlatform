@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Repositories
 {
-    public class TopicProgressRepository : GenericRepository<TopicProgress>, ITopicProgressRepository
+    public class TopicProgressRepository : GenericRepository<TopicProgress, int>, ITopicProgressRepository
     {
 
         private readonly StudyPlatformContext _context;

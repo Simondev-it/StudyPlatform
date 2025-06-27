@@ -1,4 +1,6 @@
 
+using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Repository.Interfaces;
 using Repository.Repositories;
@@ -6,6 +8,7 @@ using Service.Interfaces;
 using Service.Service;
 using StudyPlatform;
 using StudyPlatform.Models;
+using StudyPlatformAPI.MappingProfiles;
 using System.Text.Json.Serialization;
 
 namespace StudyPlatformAPI
@@ -37,13 +40,33 @@ namespace StudyPlatformAPI
             builder.Services.AddScoped<IChapterService, ChapterService>();
             builder.Services.AddScoped<IChapterRepository, ChapterRepository>();
             builder.Services.AddScoped<ITopicRepository, TopicRepository>();
+            builder.Services.AddScoped<IBoughtSubjectRepository, BoughtSubjectRepository>();
+            builder.Services.AddScoped<IProgressRepository, ProgressRepository>();
             builder.Services.AddScoped<ITopicProgressRepository, TopicProgressRepository>();
 
 
             builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
             builder.Services.AddScoped<ISubjectService, SubjectService>();
             builder.Services.AddScoped<ITopicService, TopicService>();
+            builder.Services.AddScoped<IBoughtSubjectService, BoughtSubjectService>();
+            builder.Services.AddScoped<IProgressService, ProgressService>();
+
             builder.Services.AddScoped<ITopicProgressService, TopicProgressService>();
+            builder.Services.AddEndpointsApiExplorer();
+
+
+            builder.Services.AddRouting(options => options.LowercaseUrls = true);
+             
+
+            var mapperConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<BoughtSubjectProfile>();
+                cfg.AddProfile<ProgressProfile>();
+                cfg.AddProfile<TopicProgressProfile>();
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            builder.Services.AddSingleton(mapper);
 
             var app = builder.Build();
 
@@ -53,6 +76,10 @@ namespace StudyPlatformAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseCors(options => options.WithOrigins("http://localhost:5173")
+                                          .AllowAnyMethod()
+                                          .AllowAnyHeader());
 
             app.UseHttpsRedirection();
 

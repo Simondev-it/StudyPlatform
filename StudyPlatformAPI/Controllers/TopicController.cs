@@ -3,7 +3,8 @@ using Service.Interfaces;
 
 namespace StudyPlatformAPI.Controllers
 {
-    public class TopicController : Controller
+    [Route("api/[controller]")]
+    public class TopicController : ControllerBase
     {
         private readonly ITopicService _topicService;
 
@@ -12,10 +13,17 @@ namespace StudyPlatformAPI.Controllers
             _topicService = topicService;
         }
 
-        [HttpGet("topic")]
+        [HttpGet("")]
         public async Task<IActionResult> Get()
         {
             var result = await _topicService.GetAllTopicsAsync();
+            return Ok(result);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetTopicById(int id)
+        {
+            var result = await _topicService.GetTopicsByIdAsync(id);
             return Ok(result);
         }
     }
