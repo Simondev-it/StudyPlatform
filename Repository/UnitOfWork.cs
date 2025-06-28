@@ -1,4 +1,5 @@
-﻿using Repository.Interfaces;
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
+using Repository.Interfaces;
 using Repository.Repositories;
 using StudyPlatform.Models;
 using System;
@@ -19,8 +20,9 @@ namespace StudyPlatform
         private readonly IProgressRepository _progressRepository;
         private readonly ITopicProgressRepository _topicProgressRepository;
         private readonly IUserRepository _userProgressRepository;
+        private readonly IFollowingRepository _followingRepository;
 
-        public UnitOfWork(StudyPlatformContext context, IChapterRepository chapterRepository, ISubjectRepository subjectRepository, ITopicRepository topicRepository, IBoughtSubjectRepository boughtSubjectRepository, IProgressRepository progressRepository, ITopicProgressRepository topicProgressRepository, IUserRepository userProgressRepository)
+        public UnitOfWork(StudyPlatformContext context, IChapterRepository chapterRepository, ISubjectRepository subjectRepository, ITopicRepository topicRepository, IBoughtSubjectRepository boughtSubjectRepository, IProgressRepository progressRepository, ITopicProgressRepository topicProgressRepository, IUserRepository userProgressRepository, IFollowingRepository followingRepository)
         {
             _context = context;
             _chapterRepository = chapterRepository;
@@ -30,6 +32,7 @@ namespace StudyPlatform
             _progressRepository = progressRepository;
             _topicProgressRepository = topicProgressRepository;
             _userProgressRepository = userProgressRepository;
+            _followingRepository = followingRepository;
         }
 
         public IChapterRepository ChapterRepository => _chapterRepository;
@@ -40,6 +43,7 @@ namespace StudyPlatform
         public IProgressRepository ProgressRepository => _progressRepository;
         public ITopicProgressRepository TopicProgressRepository => _topicProgressRepository;
         public IUserRepository UserRepository => _userProgressRepository;
+        public IFollowingRepository FollowingRepository => _followingRepository;
         public void Dispose()
         {
             _context.Dispose();

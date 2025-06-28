@@ -31,8 +31,7 @@ public class BoughtSubjectRepository : IBoughtSubjectRepository
         if (bought == null) return false;
 
         _context.BoughtSubjects.Remove(bought);
-        await _context.SaveChangesAsync();
-        return true;
+        return await _context.SaveChangesAsync() > 0;
     }
 
     public async Task<IEnumerable<BoughtSubject>> GetAllAsync()
@@ -74,7 +73,6 @@ public class BoughtSubjectRepository : IBoughtSubjectRepository
         if (bought == null) return false;
 
         bought.Feedback = feedback;
-        await _context.SaveChangesAsync();
-        return true;
+        return await _context.SaveChangesAsync() > 0;
     }
 }

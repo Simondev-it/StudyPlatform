@@ -31,8 +31,7 @@ public class ProgressRepository : IProgressRepository
         if (progress == null) return false;
 
         _context.Progresses.Remove(progress);
-        await _context.SaveChangesAsync();
-        return true;
+        return await _context.SaveChangesAsync() > 0;
     }
 
     public async Task<Progress?> GetByBoughtSubjectIdAsync(int boughtSubjectId)
@@ -48,7 +47,6 @@ public class ProgressRepository : IProgressRepository
         existingProgress.Chapter = progress.Chapter;
         existingProgress.Topic = progress.Topic;
         _context.Progresses.Update(existingProgress);
-        await _context.SaveChangesAsync();
-        return true;
+        return await _context.SaveChangesAsync() > 0;
     }
 }

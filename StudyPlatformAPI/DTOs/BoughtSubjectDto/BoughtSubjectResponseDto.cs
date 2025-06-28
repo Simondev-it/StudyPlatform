@@ -1,6 +1,4 @@
-﻿
-using StudyPlatform.Models;
-using StudyPlatformAPI.DTOs.ProgressDto;
+﻿using StudyPlatformAPI.DTOs.ProgressDto;
 
 namespace StudyPlatformAPI.DTOs.BoughtSubjectDto;
 
