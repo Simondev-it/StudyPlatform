@@ -20,6 +20,7 @@ public class BoughtSubjectRepository : IBoughtSubjectRepository
 
     public async Task<BoughtSubject> AddAsync(BoughtSubject boughtSubject)
     {
+        boughtSubject.PurchaseDate = DateOnly.FromDateTime(DateTime.UtcNow);
         _context.BoughtSubjects.Add(boughtSubject);
         await _context.SaveChangesAsync();
         return boughtSubject;

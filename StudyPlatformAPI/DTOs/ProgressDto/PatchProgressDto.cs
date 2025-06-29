@@ -1,10 +1,7 @@
 ﻿namespace StudyPlatformAPI.DTOs.ProgressDto;
 
-public class UpdateProgressDto
+public class PatchProgressDto
 {
-    public int Id { get; set; }
-
     public int Chapter { get; set; }
-
     public int Topic { get; set; }
 }

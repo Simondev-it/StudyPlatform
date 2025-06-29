@@ -68,7 +68,6 @@ public class BoughtSubjectController : ControllerBase
         }
 
         var boughtSubject = _mapper.Map<BoughtSubject>(dto);
-        boughtSubject.PurchaseDate = DateOnly.FromDateTime(DateTime.UtcNow);
         var result = await _boughtSubjectService.AddAsync(boughtSubject);
         return CreatedAtAction(nameof(GetById), new { id = result.Id }, _mapper.Map<BoughtSubjectResponseDto>(result));
     }

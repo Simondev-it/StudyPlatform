@@ -10,6 +10,6 @@ public class ProgressProfile : Profile
     {
         CreateMap<Progress, ProgressResponseDto>();
         CreateMap<CreateProgressDto, Progress>();
-        CreateMap<UpdateProgressDto, Progress>();
+        CreateMap<PatchProgressDto, Progress>();
     }
 }
