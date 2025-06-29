@@ -56,5 +56,22 @@ namespace Service.Service
             return userExist;
 
         }
+
+        public async Task<User> LoginByUsernameAndPassword(User user)
+        {
+            var userExist = await _unitOfWork.UserRepository.GetUserByUsernameAsync(user.Username);
+            
+
+            if (userExist == null)
+            {
+                throw new ArgumentNullException("This user does not exist, please sign up for an account.");
+            }
+            if (userExist.Password != user.Password)
+            {
+                throw new ArgumentNullException("Incorrect password, please try again.");
+            }
+            return userExist;
+
+        }
     }
 }

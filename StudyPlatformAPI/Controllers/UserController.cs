@@ -93,5 +93,20 @@ namespace StudyPlatformAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("loginusername")]
+        public async Task<IActionResult> LoginByUserName(UserLoginByUsernameDTO userLoginDto)
+        {
+            var user = _mapper.Map<User>(userLoginDto);
+            try
+            {
+                var loggedInUser = await _userService.LoginByUsernameAndPassword(user);
+                return Ok(_mapper.Map<UserResponseNoPasswordDTO>(loggedInUser));
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

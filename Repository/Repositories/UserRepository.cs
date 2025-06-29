@@ -25,5 +25,12 @@ namespace Repository.Repositories
                 .FirstOrDefaultAsync(u => u.Email == email);
         }
 
+        public async Task<User?> GetUserByUsernameAsync(string username)
+        {
+            return await _context.Users
+                .AsNoTracking()
+                .FirstOrDefaultAsync(u => u.Username == username);
+        }
+
     }
 }

@@ -19,5 +19,7 @@ namespace Service.Interfaces
 
         public Task<User> LoginByEmailAndPassword(User user);
 
+        public Task<User> LoginByUsernameAndPassword(User user);
+
     }
 }
