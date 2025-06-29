@@ -32,22 +32,20 @@ namespace StudyPlatformAPI.Controllers
             return Ok(_mapper.Map<UserResponseDTO>(user));
         }
 
-        [HttpGet("noPass/{id}")]
-        public async Task<IActionResult> GetUserNoPasswordById(int id)
-        {
-            var user = await _userService.GetUserByIdAsync(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            return Ok(_mapper.Map<UserResponseNoPasswordDTO>(user));
-        }
+         
 
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
             var users = await _userService.GetAllUsersAsync();
             return Ok(_mapper.Map<List<UserResponseDTO>>(users));
+        }
+
+        [HttpGet("/listuser")]
+        public async Task<IActionResult> GetAllUsersNoPass()
+        {
+            var users = await _userService.GetAllUsersAsync();
+            return Ok(_mapper.Map<List<UserResponseNoPasswordDTO>>(users));
         }
 
         [HttpPost]
