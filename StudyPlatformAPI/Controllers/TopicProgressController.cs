@@ -98,7 +98,7 @@ namespace StudyPlatformAPI.Controllers
         {
 
             var topicProgress = _mapper.Map<TopicProgress>(dto);
-            topicProgress.StartDate = DateOnly.FromDateTime(DateTime.UtcNow);
+            topicProgress.StartDate = DateOnly.FromDateTime(DateTime.Now);
             var result = await _topicProgressService.CreateTopicProgressAsync(topicProgress);
             return Ok(_mapper.Map<TopicProgressResponseDTO>(result));
         }

@@ -37,32 +37,29 @@ namespace StudyPlatformAPI
 
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            builder.Services.AddScoped<IChapterService, ChapterService>();
             builder.Services.AddScoped<IChapterRepository, ChapterRepository>();
             builder.Services.AddScoped<ITopicRepository, TopicRepository>();
             builder.Services.AddScoped<IBoughtSubjectRepository, BoughtSubjectRepository>();
             builder.Services.AddScoped<IProgressRepository, ProgressRepository>();
             builder.Services.AddScoped<ITopicProgressRepository, TopicProgressRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
-
-
             builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
-            builder.Services.AddScoped<ISubjectService, SubjectService>();
+            builder.Services.AddScoped<IFollowingRepository, FollowingRepository>();
+            builder.Services.AddScoped<IAchievementRepository, AchievementRepository>();
+            builder.Services.AddScoped<IAccomplishAchievementRepository, AccomplishAchievementRepository>();
+            builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+
+            builder.Services.AddScoped<IChapterService, ChapterService>();
             builder.Services.AddScoped<ITopicService, TopicService>();
+            builder.Services.AddScoped<ISubjectService, SubjectService>();
             builder.Services.AddScoped<IBoughtSubjectService, BoughtSubjectService>();
             builder.Services.AddScoped<IProgressService, ProgressService>();
-
             builder.Services.AddScoped<ITopicProgressService, TopicProgressService>();
             builder.Services.AddScoped<IUserService, UserService>();
-
-            builder.Services.AddScoped<IFollowingRepository, FollowingRepository>();
             builder.Services.AddScoped<IFollowingService, FollowingService>();
-
-            builder.Services.AddScoped<IAchievementRepository, AchievementRepository>();
             builder.Services.AddScoped<IAchievementService, AchievementService>();
-
-            builder.Services.AddScoped<IAccomplishAchievementRepository, AccomplishAchievementRepository>();
             builder.Services.AddScoped<IAccomplishAchievementService, AccomplishAchievementService>();
+            builder.Services.AddScoped<ICommentService, CommentService>();
 
             builder.Services.AddEndpointsApiExplorer();
 
@@ -79,6 +76,7 @@ namespace StudyPlatformAPI
                 cfg.AddProfile<FollowingProfile>();
                 cfg.AddProfile<AchievementProfile>();
                 cfg.AddProfile<AccomplishAchievementProfile>();
+                cfg.AddProfile<CommentProfile>();
             });
 
             IMapper mapper = mapperConfig.CreateMapper();

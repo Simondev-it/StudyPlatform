@@ -20,7 +20,7 @@ public class AccomplishAchievementService : IAccomplishAchievementService
 
     public async Task<AccomplishAchievement> AddAsync(AccomplishAchievement accomplishAchievement)
     {
-        accomplishAchievement.AchieveDate = DateOnly.FromDateTime(DateTime.UtcNow);
+        accomplishAchievement.AchieveDate = DateOnly.FromDateTime(DateTime.Now);
         return await _unitOfWork.AccomplishAchievementRepository.AddAsync(accomplishAchievement);
     }
 

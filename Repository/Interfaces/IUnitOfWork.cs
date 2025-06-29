@@ -19,6 +19,7 @@ namespace Repository.Interfaces
         public IFollowingRepository FollowingRepository { get; }
         public IAchievementRepository AchievementRepository { get; }
         public IAccomplishAchievementRepository AccomplishAchievementRepository { get; }
+        public ICommentRepository CommentRepository { get; }
         Task<int> SaveChangeAsync();
 
 
