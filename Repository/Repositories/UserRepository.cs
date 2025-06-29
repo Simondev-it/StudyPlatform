@@ -18,6 +18,12 @@ namespace Repository.Repositories
             _context = context;
         }
 
+        public async Task<User?> GetUserByEmailAsync(string email)
+        {
+            return await _context.Users
+                .AsNoTracking()
+                .FirstOrDefaultAsync(u => u.Email == email);
+        }
 
     }
 }

@@ -17,5 +17,7 @@ namespace Service.Interfaces
 
         public Task<bool> UpdateUserAsync(User user);
 
+        public Task<User> LoginByEmailAndPassword(User user);
+
     }
 }
