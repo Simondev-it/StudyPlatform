@@ -9,6 +9,7 @@ namespace StudyPlatformAPI.MappingProfiles
         public UserProfile()
         {
             CreateMap<UserCreateDTO, User>();
+            CreateMap<UserLoginDTO, User>();
             CreateMap<User, UserResponseDTO>();
             CreateMap<User, UserResponseNoPasswordDTO>();
         }

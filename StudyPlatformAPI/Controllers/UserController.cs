@@ -32,7 +32,7 @@ namespace StudyPlatformAPI.Controllers
             return Ok(_mapper.Map<UserResponseDTO>(user));
         }
 
-         
+
 
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
@@ -78,5 +78,20 @@ namespace StudyPlatformAPI.Controllers
             return Ok(_mapper.Map<UserResponseDTO>(existingUser));
 
         }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(UserLoginDTO userLoginDto)
+        {
+            var user = _mapper.Map<User>(userLoginDto);
+            try
+            {
+                var loggedInUser = await _userService.LoginByEmailAndPassword(user);
+                return Ok(_mapper.Map<UserResponseNoPasswordDTO>(loggedInUser));
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
+    }
 }

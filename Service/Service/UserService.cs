@@ -4,6 +4,7 @@ using StudyPlatform.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,6 +38,23 @@ namespace Service.Service
         public async Task<bool> UpdateUserAsync(User user)
         {
             return await _unitOfWork.UserRepository.UpdateAsync(user);
+        }
+
+        public async Task<User> LoginByEmailAndPassword(User user)
+        {
+            var userExist = await _unitOfWork.UserRepository.GetUserByEmailAsync(user.Email);
+            //ArgumentNullException.ThrowIfNullOrEmpty(user.Email, "This email does not exist, please sign up for an account.");
+
+            if (userExist == null)
+            {
+                throw new ArgumentNullException("This email does not exist, please sign up for an account.");
+            }
+            if (userExist.Password != user.Password)
+            {
+                throw new ArgumentNullException("Incorrect password, please try again.");
+            }
+            return userExist;
+
         }
     }
 }
