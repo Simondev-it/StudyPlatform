@@ -40,13 +40,18 @@ public class ProgressRepository : IProgressRepository
             .FirstOrDefaultAsync(p => p.BoughtSubjectId == boughtSubjectId);
     }
 
+    public async Task<Progress?> GetByIdAsync(int id)
+    {
+        return await _context.Progresses
+            .FindAsync(id);
+    }
+
     public async Task<bool> UpdateAsync(Progress progress)
     {
         var existingProgress = await _context.Progresses.FindAsync(progress.Id);
         if (existingProgress == null) return false;
         existingProgress.Chapter = progress.Chapter;
         existingProgress.Topic = progress.Topic;
-        _context.Progresses.Update(existingProgress);
         return await _context.SaveChangesAsync() > 0;
     }
 }

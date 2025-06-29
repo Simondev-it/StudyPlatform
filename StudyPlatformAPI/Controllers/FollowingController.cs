@@ -40,7 +40,6 @@ public class FollowingController : ControllerBase
         }
 
         var following = _mapper.Map<Following>(dto);
-        following.FollowDate = DateOnly.FromDateTime(DateTime.UtcNow);
         var createdFollowing = await _followingService.CreateAsync(following);
         var result = _mapper.Map<FollowingResponseDto>(createdFollowing);
         return Ok(result);

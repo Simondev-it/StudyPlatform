@@ -20,6 +20,7 @@ public class FollowingRepository : IFollowingRepository
 
     public async Task<Following> CreateAsync(Following following)
     {
+        following.FollowDate = DateOnly.FromDateTime(DateTime.UtcNow);
         _context.Followings.Add(following);
         await _context.SaveChangesAsync();
         return following;

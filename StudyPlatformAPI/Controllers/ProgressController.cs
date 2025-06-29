@@ -46,16 +46,22 @@ public class ProgressController : ControllerBase
         return Ok(progressDto);
     }
 
-    // PUT: api/Progress
-    [HttpPut]
-    public async Task<IActionResult> UpdateProgress(UpdateProgressDto dto)
+    // PATCH: api/Progress
+    [HttpPatch]
+    public async Task<IActionResult> UpdateProgress(int id, [FromBody] PatchProgressDto dto)
     {
-        var progress = _mapper.Map<Progress>(dto);
-        var updated = await _progressService.UpdateAsync(progress);
-        if (!updated)
+        var existingProgress = await _progressService.GetByIdAsync(id);
+
+        if (existingProgress == null)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, "Error updating progress.");
+            return NotFound();
         }
+
+        _mapper.Map(dto, existingProgress);
+
+        var result = await _progressService.UpdateAsync(existingProgress);
+
+        if (!result) return StatusCode(500, "Update failed.");
         return NoContent();
     }
 

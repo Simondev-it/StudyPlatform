@@ -33,6 +33,11 @@ public class ProgressService : IProgressService
         return await _unitOfWork.ProgressRepository.GetByBoughtSubjectIdAsync(boughtSubjectId);
     }
 
+    public async Task<Progress?> GetByIdAsync(int id)
+    {
+        return await _unitOfWork.ProgressRepository.GetByIdAsync(id);
+    }
+
     public async Task<bool> UpdateAsync(Progress progress)
     {
         return await _unitOfWork.ProgressRepository.UpdateAsync(progress);

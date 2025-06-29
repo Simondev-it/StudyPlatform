@@ -9,6 +9,7 @@ namespace Service.Interfaces;
 
 public interface IProgressService
 {
+    Task<Progress?> GetByIdAsync(int id);
     Task<Progress?> GetByBoughtSubjectIdAsync(int boughtSubjectId);
     Task<bool> UpdateAsync(Progress progress);
     Task<Progress> AddAsync(Progress progress);
