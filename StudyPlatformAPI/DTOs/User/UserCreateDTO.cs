@@ -15,7 +15,7 @@
         public string Email { get; set; }
 
         public int Point { get; set; }
-        public DateOnly? JoinedDate { get; set; }
+        //public DateOnly? JoinedDate { get; set; }
 
         public int DayStreak { get; set; }
 
