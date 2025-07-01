@@ -18,4 +18,4 @@ public partial class Chapter
     public virtual Subject Subject { get; set; }
 
     public virtual ICollection<Topic> Topics { get; set; } = new List<Topic>();
-}
+ }

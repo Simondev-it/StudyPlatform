@@ -52,6 +52,7 @@ namespace StudyPlatformAPI.Controllers
         public async Task<IActionResult> CreateUser(UserCreateDTO userCreateDto)
         {
             var user = _mapper.Map<User>(userCreateDto);
+            user.JoinedDate = DateOnly.FromDateTime(DateTime.Now);
             var createdUser = await _userService.CreateUserAsync(user);
             return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, _mapper.Map<UserResponseDTO>(createdUser));
         }

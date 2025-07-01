@@ -29,6 +29,10 @@ public partial class User
 
     public int HighestDayStreak { get; set; }
 
+    public string Image { get; set; }
+    public DateOnly? LastOnline { get; set; }
+    public string Type { get; set; }
+
     public virtual ICollection<AccomplishAchievement> AccomplishAchievements { get; set; } = new List<AccomplishAchievement>();
 
     public virtual ICollection<BoughtSubject> BoughtSubjects { get; set; } = new List<BoughtSubject>();

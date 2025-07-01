@@ -16,6 +16,7 @@ public partial class TopicProgress
     public int UserId { get; set; }
 
     public int TopicId { get; set; }
+    public string Note { get; set; }
 
     public virtual Topic Topic { get; set; }
 
