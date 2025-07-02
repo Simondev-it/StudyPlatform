@@ -28,7 +28,7 @@ namespace Repository.Repositories
             return query.ToListAsync();
         }
 
-        public async Task<T?> GetByIdAsync(TKey id) => await _dbSet.FindAsync(id);
+        public virtual async Task<T?> GetByIdAsync(TKey id) => await _dbSet.FindAsync(id);
         
 
         public async ValueTask<T> CreateAsync(T t)

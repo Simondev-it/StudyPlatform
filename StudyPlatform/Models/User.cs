@@ -42,4 +42,5 @@ public partial class User
     public virtual ICollection<Following> FollowingUsers { get; set; } = new List<Following>();
 
     public virtual ICollection<TopicProgress> TopicProgresses { get; set; } = new List<TopicProgress>();
+    public virtual ICollection<ChapterProgress> ChapterProgresses { get; set; } = new List<ChapterProgress>();
 }

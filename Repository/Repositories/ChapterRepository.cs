@@ -1,4 +1,5 @@
-﻿ using Repository.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using Repository.Interfaces;
 using StudyPlatform.Models;
 using System;
 using System.Collections.Generic;
@@ -18,8 +19,12 @@ namespace Repository.Repositories
             _context = context;
         }
 
-         
-
-         
+        public override async Task<Chapter?> GetByIdAsync(int id)
+        {
+            return await _context.Chapters
+                .Include(c => c.Topics)
+                    .ThenInclude(t => t.Questions)
+                .FirstOrDefaultAsync(c => c.Id == id);
+        }
     }
 }

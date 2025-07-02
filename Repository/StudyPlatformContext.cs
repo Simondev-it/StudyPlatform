@@ -192,6 +192,18 @@ public partial class StudyPlatformContext : DbContext
                 .HasConstraintName("FK__TopicProg__UserI__4E88ABD4");
         });
 
+        modelBuilder.Entity<ChapterProgress>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__ChapterP__3214EC07B0F8A1C2");
+            entity.ToTable("ChapterProgress");
+            entity.HasOne(d => d.Chapter).WithMany(p => p.ChapterProgresses)
+                .HasForeignKey(d => d.ChapterId)
+                .HasConstraintName("FK__ChapterPr__Chapt__4D94879B");
+            entity.HasOne(d => d.User).WithMany(p => p.ChapterProgresses)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK__ChapterPr__UserI__4C6B5938");
+        });
+
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__User__3214EC07E64390ED");

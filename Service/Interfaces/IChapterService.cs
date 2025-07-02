@@ -10,6 +10,6 @@ namespace Service.Interfaces
     public interface IChapterService
     {
         Task<List<Chapter>> GetAllChaptersAsync();
-        
+        Task<Chapter?> GetByIdAsync(int id);
     }
 }

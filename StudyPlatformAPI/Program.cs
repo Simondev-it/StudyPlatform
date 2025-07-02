@@ -77,6 +77,9 @@ namespace StudyPlatformAPI
                 cfg.AddProfile<AchievementProfile>();
                 cfg.AddProfile<AccomplishAchievementProfile>();
                 cfg.AddProfile<CommentProfile>();
+                cfg.AddProfile<ChapterProfile>();
+                cfg.AddProfile<TopicProfile>();
+                cfg.AddProfile<QuestionProfile>();
             });
 
             IMapper mapper = mapperConfig.CreateMapper();
