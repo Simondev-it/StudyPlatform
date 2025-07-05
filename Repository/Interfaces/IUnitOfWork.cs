@@ -20,6 +20,7 @@ namespace Repository.Interfaces
         public IAchievementRepository AchievementRepository { get; }
         public IAccomplishAchievementRepository AccomplishAchievementRepository { get; }
         public ICommentRepository CommentRepository { get; }
+        public IChapterProgressRepository ChapterProgressRepository { get; }
         Task<int> SaveChangeAsync();
 
 

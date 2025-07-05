@@ -24,8 +24,9 @@ namespace StudyPlatform
         private readonly IAchievementRepository _achievementRepository;
         private readonly IAccomplishAchievementRepository _accomplishmentAchievementRepository;
         private readonly ICommentRepository _commentRepository;
+        private readonly IChapterProgressRepository _chapterProgressRepository;
 
-        public UnitOfWork(StudyPlatformContext context, IChapterRepository chapterRepository, ISubjectRepository subjectRepository, ITopicRepository topicRepository, IBoughtSubjectRepository boughtSubjectRepository, IProgressRepository progressRepository, ITopicProgressRepository topicProgressRepository, IUserRepository userProgressRepository, IFollowingRepository followingRepository, IAchievementRepository achievementRepository, IAccomplishAchievementRepository accomplishmentAchievementRepository, ICommentRepository commentRepository)
+        public UnitOfWork(StudyPlatformContext context, IChapterRepository chapterRepository, ISubjectRepository subjectRepository, ITopicRepository topicRepository, IBoughtSubjectRepository boughtSubjectRepository, IProgressRepository progressRepository, ITopicProgressRepository topicProgressRepository, IUserRepository userProgressRepository, IFollowingRepository followingRepository, IAchievementRepository achievementRepository, IAccomplishAchievementRepository accomplishmentAchievementRepository, ICommentRepository commentRepository, IChapterProgressRepository chapterProgressRepository)
         {
             _context = context;
             _chapterRepository = chapterRepository;
@@ -39,6 +40,7 @@ namespace StudyPlatform
             _achievementRepository = achievementRepository;
             _accomplishmentAchievementRepository = accomplishmentAchievementRepository;
             _commentRepository = commentRepository;
+            _chapterProgressRepository = chapterProgressRepository;
         }
 
         public IChapterRepository ChapterRepository => _chapterRepository;
@@ -52,6 +54,7 @@ namespace StudyPlatform
         public IAchievementRepository AchievementRepository => _achievementRepository;
         public IAccomplishAchievementRepository AccomplishAchievementRepository => _accomplishmentAchievementRepository;
         public ICommentRepository CommentRepository => _commentRepository;
+        public IChapterProgressRepository ChapterProgressRepository => _chapterProgressRepository;
 
         public void Dispose()
         {

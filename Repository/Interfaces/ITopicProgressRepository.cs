@@ -9,5 +9,5 @@ namespace Repository.Interfaces
 {
     public interface ITopicProgressRepository : IGenericRepository<TopicProgress, int>
     {
-     }
+    }
 }
