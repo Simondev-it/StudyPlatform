@@ -48,6 +48,7 @@ namespace StudyPlatformAPI
             builder.Services.AddScoped<IAchievementRepository, AchievementRepository>();
             builder.Services.AddScoped<IAccomplishAchievementRepository, AccomplishAchievementRepository>();
             builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+            builder.Services.AddScoped<IChapterProgressRepository, ChapterProgressRepository>();
 
             builder.Services.AddScoped<IChapterService, ChapterService>();
             builder.Services.AddScoped<ITopicService, TopicService>();
@@ -60,6 +61,7 @@ namespace StudyPlatformAPI
             builder.Services.AddScoped<IAchievementService, AchievementService>();
             builder.Services.AddScoped<IAccomplishAchievementService, AccomplishAchievementService>();
             builder.Services.AddScoped<ICommentService, CommentService>();
+            builder.Services.AddScoped<IChapterProgressService, ChapterProgressService>();
 
             builder.Services.AddEndpointsApiExplorer();
 
@@ -80,6 +82,7 @@ namespace StudyPlatformAPI
                 cfg.AddProfile<ChapterProfile>();
                 cfg.AddProfile<TopicProfile>();
                 cfg.AddProfile<QuestionProfile>();
+                cfg.AddProfile<ChapterProgressProfile>();
             });
 
             IMapper mapper = mapperConfig.CreateMapper();
