@@ -1,10 +1,7 @@
 ﻿namespace StudyPlatformAPI.DTOs.BoughtSubjectDto;
 
-public class CreateBoughtSubjectDto
+public class UpdateBoughtSubjectDto
 {
-    public int SubjectId { get; set; }
-
-    public int UserId { get; set; }
     public int Rating { get; set; }
     public string Feedback { get; set; }
 }

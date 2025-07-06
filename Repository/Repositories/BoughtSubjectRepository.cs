@@ -68,12 +68,13 @@ public class BoughtSubjectRepository : IBoughtSubjectRepository
             .AnyAsync(bs => bs.UserId == userId && bs.SubjectId == subjectId);
     }
 
-    public async Task<bool> UpdateFeedbackAsync(int id, string feedback)
+    public async Task<bool> UpdateFeedbackAsync(int id, BoughtSubject boughtSubject)
     {
         var bought = await _context.BoughtSubjects.FindAsync(id);
         if (bought == null) return false;
 
-        bought.Feedback = feedback;
+        bought.Feedback = boughtSubject.Feedback;
+        bought.Rating = boughtSubject.Rating;
         return await _context.SaveChangesAsync() > 0;
     }
 }

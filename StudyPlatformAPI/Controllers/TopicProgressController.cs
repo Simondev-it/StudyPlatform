@@ -21,6 +21,13 @@ namespace StudyPlatformAPI.Controllers
             _mapper = mapper;
         }
 
+        [HttpGet("")]
+        public async Task<ActionResult> GetAll()
+        {
+            var result = await _topicProgressService.GetAllTopicProgressAsync();
+            return Ok(_mapper.Map<IEnumerable<TopicProgressResponseDTO>>(result));
+        }
+
         //[HttpPost("")]
         //public async Task<ActionResult> CreateTopicProgress(TopicProgressCreateDTO dto)
         //{

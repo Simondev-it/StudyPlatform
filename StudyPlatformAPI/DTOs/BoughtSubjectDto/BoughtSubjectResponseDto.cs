@@ -7,6 +7,7 @@ public class BoughtSubjectResponseDto
     public int Id { get; set; }
 
     public DateOnly PurchaseDate { get; set; }
+    public int Rating { get; set; }
 
     public string Feedback { get; set; }
 
