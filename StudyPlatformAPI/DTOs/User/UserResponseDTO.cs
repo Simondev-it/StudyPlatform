@@ -21,5 +21,9 @@
         public int DayStreak { get; set; }
 
         public int HighestDayStreak { get; set; }
+
+        public string Image { get; set; }
+        public DateOnly? LastOnline { get; set; }
+        public string Type { get; set; }
     }
 }
