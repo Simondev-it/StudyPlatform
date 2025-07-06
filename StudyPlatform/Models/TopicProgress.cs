@@ -11,7 +11,7 @@ public partial class TopicProgress
 
     public int Score { get; set; }
 
-    public DateOnly? StartDate { get; set; }
+    public DateTime? StartDate { get; set; }
 
     public int UserId { get; set; }
 

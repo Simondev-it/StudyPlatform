@@ -13,7 +13,7 @@ public partial class Comment
 
     public int Answer { get; set; }
 
-    public DateOnly? CommentDate { get; set; }
+    public DateTime? CommentDate { get; set; }
 
     public int QuestionId { get; set; }
 

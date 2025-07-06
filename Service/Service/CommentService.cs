@@ -20,7 +20,7 @@ public class CommentService : ICommentService
 
     public async Task<Comment> CreateAsync(Comment comment)
     {
-        comment.CommentDate = DateOnly.FromDateTime(DateTime.Now);
+        comment.CommentDate = DateTime.Now;
         return await _unitOfWork.CommentRepository.CreateAsync(comment);
     }
 
@@ -49,7 +49,7 @@ public class CommentService : ICommentService
     public async Task<bool> UpdateAsync(Comment comment)
     {
         comment.Content = comment.Content;
-        comment.CommentDate = DateOnly.FromDateTime(DateTime.Now);
+        comment.CommentDate = DateTime.Now;
         return await _unitOfWork.CommentRepository.UpdateAsync(comment);
     }
 }

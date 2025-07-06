@@ -43,7 +43,7 @@ public class ChapterProgressController : ControllerBase
     public async Task<ActionResult> Create(CreateChapterProgressDto dto)
     {
         var chapterProgress = _mapper.Map<ChapterProgress>(dto);
-        chapterProgress.StartDate = DateOnly.FromDateTime(DateTime.Now);
+        chapterProgress.StartDate = DateTime.Now;
         var result = await _chapterProgressService.CreateAsync(chapterProgress);
         return CreatedAtAction(nameof(GetById), new { id = result.Id }, _mapper.Map<ChapterProgressResponseDto>(result));
     }
