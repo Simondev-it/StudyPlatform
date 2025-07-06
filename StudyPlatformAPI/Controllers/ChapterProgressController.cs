@@ -20,6 +20,14 @@ public class ChapterProgressController : ControllerBase
         _mapper = mapper;
     }
 
+    [HttpGet("")]
+    public async Task<ActionResult> GetAll()
+    {
+        var result = await _chapterProgressService.GetAllAsync();
+        return Ok(_mapper.Map<IEnumerable<ChapterProgressResponseDto>>(result));
+    }
+
+
     [HttpGet("{id}")]
     public async Task<ActionResult> GetById(int id)
     {

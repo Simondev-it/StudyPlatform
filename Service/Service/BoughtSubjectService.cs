@@ -48,8 +48,8 @@ public class BoughtSubjectService : IBoughtSubjectService
         return await _unitOfWork.BoughtSubjectRepository.HasUserBoughtSubjectAsync(userId, subjectId);
     }
 
-    public async Task<bool> UpdateFeedbackAsync(int id, string feedback)
+    public async Task<bool> UpdateFeedbackAsync(int id, BoughtSubject boughtSubject)
     {
-        return await _unitOfWork.BoughtSubjectRepository.UpdateFeedbackAsync(id, feedback);
+        return await _unitOfWork.BoughtSubjectRepository.UpdateFeedbackAsync(id, boughtSubject);
     }
 }

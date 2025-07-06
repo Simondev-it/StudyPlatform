@@ -86,11 +86,13 @@ public class BoughtSubjectController : ControllerBase
         return NoContent();
     }
 
-    // PATCH: api/BoughtSubject/{id}/feedback
-    [HttpPatch("{id}/feedback")]
-    public async Task<IActionResult> UpdateFeedback(int id, [FromBody] string feedback)
+    // PATCH: api/BoughtSubject/{id}
+    [HttpPatch("{id}")]
+    public async Task<IActionResult> UpdateFeedback(int id, [FromBody] UpdateBoughtSubjectDto dto)
     {
-        var result = await _boughtSubjectService.UpdateFeedbackAsync(id, feedback);
+        var boughtSubject = _mapper.Map<BoughtSubject>(dto);
+
+        var result = await _boughtSubjectService.UpdateFeedbackAsync(id, boughtSubject);
 
         if (!result)
         {

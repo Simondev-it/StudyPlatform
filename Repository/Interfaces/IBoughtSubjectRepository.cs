@@ -14,6 +14,6 @@ public interface IBoughtSubjectRepository
     Task<IEnumerable<BoughtSubject>> GetByUserIdAsync(int userId);
     Task<BoughtSubject> AddAsync(BoughtSubject boughtSubject);
     Task<bool> DeleteAsync(int id);
-    Task<bool> UpdateFeedbackAsync(int id, string feedback);
+    Task<bool> UpdateFeedbackAsync(int id, BoughtSubject boughtSubject);
     Task<bool> HasUserBoughtSubjectAsync(int userId, int subjectId);
 }
