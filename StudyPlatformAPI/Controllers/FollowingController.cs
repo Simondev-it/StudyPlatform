@@ -29,6 +29,15 @@ public class FollowingController : ControllerBase
         return Ok(followingsDto);
     }
 
+    // GET: api/Following/following/{followingId}
+    [HttpGet("following/{followingId}")]
+    public async Task<IActionResult> GetByFollowingId(int followingId)
+    {
+        var followings = await _followingService.GetByFollowingIdAsync(followingId);
+        var followingsDto = _mapper.Map<IEnumerable<FollowingResponseDto>>(followings);
+        return Ok(followingsDto);
+    }
+
     // POST: api/Following
     [HttpPost]
     public async Task<IActionResult> CreateFollowing(CreateFollowingDto dto)

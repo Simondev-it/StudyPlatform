@@ -28,6 +28,11 @@ public class FollowingService : IFollowingService
         return await _unitOfWork.FollowingRepository.DeleteAsync(id);
     }
 
+    public async Task<IEnumerable<Following>> GetByFollowingIdAsync(int followingId)
+    {
+        return await _unitOfWork.FollowingRepository.GetByFollowingIdAsync(followingId);
+    }
+
     public async Task<IEnumerable<Following>> GetByUserIdAsync(int userId)
     {
         return await _unitOfWork.FollowingRepository.GetByUserIdAsync(userId);

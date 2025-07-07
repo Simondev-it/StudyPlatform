@@ -10,6 +10,7 @@ namespace Service.Interfaces;
 public interface IFollowingService
 {
     Task<IEnumerable<Following>> GetByUserIdAsync(int userId);
+    Task<IEnumerable<Following>> GetByFollowingIdAsync(int followingId);
     Task<Following> CreateAsync(Following following);
     Task<bool> DeleteAsync(int id);
     Task<bool> HasUserFollowedAsync(int userId, int followingId);
