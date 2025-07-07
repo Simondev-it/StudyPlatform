@@ -35,6 +35,13 @@ public class FollowingRepository : IFollowingRepository
         return await _context.SaveChangesAsync() > 0;
     }
 
+    public async Task<IEnumerable<Following>> GetByFollowingIdAsync(int followingId)
+    {
+        return await _context.Followings
+            .Where(f => f.FollowingId == followingId)
+            .ToListAsync();
+    }
+
     public async Task<IEnumerable<Following>> GetByUserIdAsync(int userId)
     {
         return await _context.Followings
