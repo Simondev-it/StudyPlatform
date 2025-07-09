@@ -9,6 +9,7 @@ namespace Service.Interfaces;
 
 public interface ICommentService
 {
+    Task<IEnumerable<Comment>> GetAllAsync();
     Task<Comment?> GetByIdAsync(int id);
     Task<IEnumerable<Comment>> GetByQuestionIdAsync(int questionId);
     Task<Comment> CreateAsync(Comment comment);

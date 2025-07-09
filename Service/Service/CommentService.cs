@@ -36,6 +36,11 @@ public class CommentService : ICommentService
         return await _unitOfWork.CommentRepository.DeleteAsync(comment);
     }
 
+    public async Task<IEnumerable<Comment>> GetAllAsync()
+    {
+        return await _unitOfWork.CommentRepository.GetAllAsync();
+    }
+
     public async Task<Comment?> GetByIdAsync(int id)
     {
         return await _unitOfWork.CommentRepository.GetByIdAsync(id);
