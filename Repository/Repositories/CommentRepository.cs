@@ -31,6 +31,11 @@ public class CommentRepository : ICommentRepository
         return await _context.SaveChangesAsync() > 0;
     }
 
+    public async Task<IEnumerable<Comment>> GetAllAsync()
+    {
+        return await _context.Comments.ToListAsync();
+    }
+
     public async Task<Comment?> GetByIdAsync(int id)
     {
         return await _context.Comments

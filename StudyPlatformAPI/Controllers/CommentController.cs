@@ -20,6 +20,14 @@ public class CommentController : ControllerBase
         _commentService = commentService;
     }
 
+    [HttpGet("")]
+    public async Task<IActionResult> GetAll()
+    {
+        var comments = await _commentService.GetAllAsync();
+        var commentsDto = _mapper.Map<IEnumerable<CommentResponseDto>>(comments);
+        return Ok(commentsDto);
+    }
+
     // GET: api/Comment/question/{questionId}
     [HttpGet("question/{questionId}")]
     public async Task<IActionResult> GetByQuestionId(int questionId)
