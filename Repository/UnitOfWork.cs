@@ -25,8 +25,9 @@ namespace StudyPlatform
         private readonly IAccomplishAchievementRepository _accomplishmentAchievementRepository;
         private readonly ICommentRepository _commentRepository;
         private readonly IChapterProgressRepository _chapterProgressRepository;
+        private readonly IQuestionRepository _questionRepository;
 
-        public UnitOfWork(StudyPlatformContext context, IChapterRepository chapterRepository, ISubjectRepository subjectRepository, ITopicRepository topicRepository, IBoughtSubjectRepository boughtSubjectRepository, IProgressRepository progressRepository, ITopicProgressRepository topicProgressRepository, IUserRepository userProgressRepository, IFollowingRepository followingRepository, IAchievementRepository achievementRepository, IAccomplishAchievementRepository accomplishmentAchievementRepository, ICommentRepository commentRepository, IChapterProgressRepository chapterProgressRepository)
+        public UnitOfWork(StudyPlatformContext context, IChapterRepository chapterRepository, ISubjectRepository subjectRepository, ITopicRepository topicRepository, IBoughtSubjectRepository boughtSubjectRepository, IProgressRepository progressRepository, ITopicProgressRepository topicProgressRepository, IUserRepository userProgressRepository, IFollowingRepository followingRepository, IAchievementRepository achievementRepository, IAccomplishAchievementRepository accomplishmentAchievementRepository, ICommentRepository commentRepository, IChapterProgressRepository chapterProgressRepository, IQuestionRepository questionRepository)
         {
             _context = context;
             _chapterRepository = chapterRepository;
@@ -41,6 +42,7 @@ namespace StudyPlatform
             _accomplishmentAchievementRepository = accomplishmentAchievementRepository;
             _commentRepository = commentRepository;
             _chapterProgressRepository = chapterProgressRepository;
+            _questionRepository = questionRepository;
         }
 
         public IChapterRepository ChapterRepository => _chapterRepository;
@@ -55,6 +57,7 @@ namespace StudyPlatform
         public IAccomplishAchievementRepository AccomplishAchievementRepository => _accomplishmentAchievementRepository;
         public ICommentRepository CommentRepository => _commentRepository;
         public IChapterProgressRepository ChapterProgressRepository => _chapterProgressRepository;
+        public IQuestionRepository QuestionRepository => _questionRepository;
 
         public void Dispose()
         {
