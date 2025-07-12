@@ -16,5 +16,7 @@ namespace Repository.Interfaces
 
         public ValueTask<bool> UpdateAsync(T t);
 
+        public ValueTask<bool> DeleteAsync(TKey id);
+
      }
 }

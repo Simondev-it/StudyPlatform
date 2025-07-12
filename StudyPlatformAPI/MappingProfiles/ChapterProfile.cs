@@ -9,5 +9,6 @@ public class ChapterProfile : Profile
     public ChapterProfile()
     {
         CreateMap<Chapter, ChapterResponseDto>();
+        CreateMap<CreateChapterDto, Chapter>();
     }
 }

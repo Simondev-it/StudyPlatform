@@ -45,6 +45,15 @@ namespace Repository.Repositories
             return await SaveChangesAsync();
         }
 
+        public async ValueTask<bool> DeleteAsync(TKey id)
+        {
+            var entity = await GetByIdAsync(id);
+            if (entity == null) return false;
+
+            _dbSet.Remove(entity);
+            return await SaveChangesAsync();
+        }
+
         private async ValueTask<bool> SaveChangesAsync()
         {
             try

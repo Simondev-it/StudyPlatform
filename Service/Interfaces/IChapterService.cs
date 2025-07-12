@@ -11,5 +11,11 @@ namespace Service.Interfaces
     {
         Task<List<Chapter>> GetAllChaptersAsync();
         Task<Chapter?> GetByIdAsync(int id);
+
+        Task<Chapter> CreateAsync(Chapter chapter);
+
+        Task<bool> UpdateAsync(Chapter chapter);
+
+        Task<bool> DeleteAsync(int id);
     }
 }
