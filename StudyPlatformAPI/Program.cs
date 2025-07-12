@@ -83,6 +83,7 @@ namespace StudyPlatformAPI
                 cfg.AddProfile<TopicProfile>();
                 cfg.AddProfile<QuestionProfile>();
                 cfg.AddProfile<ChapterProgressProfile>();
+                cfg.AddProfile<SubjectProfile>();
             });
 
             IMapper mapper = mapperConfig.CreateMapper();

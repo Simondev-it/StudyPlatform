@@ -11,5 +11,8 @@ namespace Repository.Interfaces
     {
         public Task<List<Subject>> GetAllSubjects();
         public Task<Subject> GetSubjectsById(int id);
+        public Task<Subject> AddSubject(Subject subject);
+        public Task<bool> UpdateSubject(Subject subject);
+        public Task<bool> DeleteSubject(int id);
     }
 }
