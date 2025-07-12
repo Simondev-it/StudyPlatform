@@ -49,6 +49,7 @@ namespace StudyPlatformAPI
             builder.Services.AddScoped<IAccomplishAchievementRepository, AccomplishAchievementRepository>();
             builder.Services.AddScoped<ICommentRepository, CommentRepository>();
             builder.Services.AddScoped<IChapterProgressRepository, ChapterProgressRepository>();
+            builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 
             builder.Services.AddScoped<IChapterService, ChapterService>();
             builder.Services.AddScoped<ITopicService, TopicService>();
@@ -62,6 +63,7 @@ namespace StudyPlatformAPI
             builder.Services.AddScoped<IAccomplishAchievementService, AccomplishAchievementService>();
             builder.Services.AddScoped<ICommentService, CommentService>();
             builder.Services.AddScoped<IChapterProgressService, ChapterProgressService>();
+            builder.Services.AddScoped<IQuestionService, QuestionService>();
 
             builder.Services.AddEndpointsApiExplorer();
 
