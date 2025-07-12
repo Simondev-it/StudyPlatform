@@ -21,6 +21,16 @@ namespace Service.Service
             _unitOfWork = unitOfWork;
         }
 
+        public async Task<Subject> AddSubject(Subject subject)
+        {
+            subject.UploadDate = subject.LastEditDate = DateOnly.FromDateTime(DateTime.Now);
+            return await _unitOfWork.SubjectRepository.AddSubject(subject);
+        }
+
+        public async Task<bool> DeleteSubject(int id)
+        {
+            return await _unitOfWork.SubjectRepository.DeleteSubject(id);
+        }
 
         public async Task<List<Subject>> GetAllSubjects()
         {
@@ -30,6 +40,11 @@ namespace Service.Service
         public async Task<Subject> GetSubjectByID(int id)
         {
             return await _unitOfWork.SubjectRepository.GetSubjectsById(id);
+        }
+
+        public async Task<bool> UpdateSubject(Subject subject)
+        {
+            return await _unitOfWork.SubjectRepository.UpdateSubject(subject);
         }
 
         //public async Task<List<Subject>> GetAllSubjects()

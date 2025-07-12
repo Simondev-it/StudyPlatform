@@ -10,7 +10,10 @@ namespace Service.Interfaces
 {
     public interface ISubjectService
     {
-          Task<List<Subject>> GetAllSubjects();
+        Task<List<Subject>> GetAllSubjects();
         Task<Subject> GetSubjectByID(int id);
+        Task<Subject> AddSubject(Subject subject);
+        Task<bool> UpdateSubject(Subject subject);
+        Task<bool> DeleteSubject(int id);
     }
 }
