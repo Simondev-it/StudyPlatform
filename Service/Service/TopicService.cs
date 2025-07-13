@@ -18,6 +18,18 @@ namespace Service.Service
             _unitOfWork = unitOfWork;
         }
 
+        public async Task<Topic> CreateTopicAsync(Topic topic)
+        {
+            await _unitOfWork.TopicRepository.CreateAsync(topic);
+            return topic;
+        }
+
+        public async Task<bool> DeleteTopicAsync(int id)
+        {
+            await _unitOfWork.TopicRepository.DeleteAsync(id);
+            return true;
+        }
+
         public async Task<List<Topic>> GetAllTopicsAsync()
         {
             var chapters = await _unitOfWork.TopicRepository.GetAllAsync();
@@ -32,5 +44,10 @@ namespace Service.Service
 
         }
 
+        public async Task<bool> UpdateTopicAsync(Topic topic)
+        {
+            await _unitOfWork.TopicRepository.UpdateAsync(topic);
+            return true;
+        }
     }
 }

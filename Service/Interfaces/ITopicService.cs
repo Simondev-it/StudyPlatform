@@ -11,6 +11,9 @@ namespace Service.Interfaces
     {
         Task<List<Topic>> GetAllTopicsAsync();
 
+        Task<Topic> CreateTopicAsync(Topic topic);
+        Task<bool> UpdateTopicAsync(Topic topic);
+        Task<bool> DeleteTopicAsync(int id);
         Task<Topic> GetTopicsByIdAsync(int id);
     }
 }

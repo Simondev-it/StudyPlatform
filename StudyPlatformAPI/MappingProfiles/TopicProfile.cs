@@ -8,6 +8,7 @@ public class TopicProfile : Profile
 {
     public TopicProfile()
     {
+        CreateMap<TopicCreateDto, Topic>();
         CreateMap<Topic, TopicResponseDto>();
     }
 }
