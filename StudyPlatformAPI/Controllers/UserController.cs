@@ -80,6 +80,20 @@ namespace StudyPlatformAPI.Controllers
 
         }
 
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> PatchUser(
+    int id,
+    [FromBody] UserUpdateDTO userUpdateDto)
+        {
+            var existingUser = await _userService.GetUserByIdAsync(id);
+            if (existingUser == null) return NotFound();
+
+            _mapper.Map(userUpdateDto, existingUser); // Nulls are ignored
+            await _userService.UpdateUserAsync(existingUser);
+
+            return Ok(_mapper.Map<UserResponseDTO>(existingUser));
+        }
+
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserLoginDTO userLoginDto)
         {
