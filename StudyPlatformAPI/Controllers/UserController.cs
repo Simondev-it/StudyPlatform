@@ -137,7 +137,22 @@ namespace StudyPlatformAPI.Controllers
             if (user == null)
                 return NotFound();
 
-            _unitOfWork.UserRepository.UpdatePassword(user, request.Password);
+            // Chỉ cập nhật nếu request có giá trị
+            if (request.Name != null) user.Name = request.Name;
+            if (request.Username != null) user.Username = request.Username;
+            if (request.Password != null) user.Password = request.Password;
+            if (request.Role != null) user.Role = request.Role;
+            if (request.CuratorId.HasValue) user.CuratorId = request.CuratorId.Value;
+            if (request.Email != null) user.Email = request.Email;
+            if (request.Point.HasValue) user.Point = request.Point.Value;
+            if (request.JoinedDate.HasValue) user.JoinedDate = request.JoinedDate.Value;
+            if (request.DayStreak.HasValue) user.DayStreak = request.DayStreak.Value;
+            if (request.HighestDayStreak.HasValue) user.HighestDayStreak = request.HighestDayStreak.Value;
+            if (request.Image != null) user.Image = request.Image;
+            if (request.LastOnline.HasValue) user.LastOnline = request.LastOnline.Value;
+            if (request.Type != null) user.Type = request.Type;
+
+            await _unitOfWork.SaveChangeAsync();
 
             // ✅ Cách đúng: gọi Save qua UnitOfWork
             await _unitOfWork.SaveChangeAsync();
