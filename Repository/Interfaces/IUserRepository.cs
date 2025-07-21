@@ -12,5 +12,7 @@ namespace Repository.Interfaces
         public Task<User?> GetUserByEmailAsync(string email);
 
         public Task<User?> GetUserByUsernameAsync(string username);
-    }
+        public void UpdatePassword(User user, string newPassword);
+        
+        }
 }

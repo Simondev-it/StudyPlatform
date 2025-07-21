@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Repository.Interfaces;
 using Service.Interfaces;
 using Service.Service;
+using StudyPlatform;
 using StudyPlatform.Models;
 using StudyPlatformAPI.DTOs.TopicProgress;
 using StudyPlatformAPI.DTOs.User;
@@ -14,11 +16,14 @@ namespace StudyPlatformAPI.Controllers
     {
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public UserController(IUserService userService, IMapper mapper)
+
+        public UserController(IUserService userService, IMapper mapper, IUnitOfWork unitOfWork)
         {
             _userService = userService;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
         [HttpGet("{id}")]
@@ -122,6 +127,22 @@ namespace StudyPlatformAPI.Controllers
             {
                 return BadRequest(ex.Message);
             }
+
+        }
+
+        [HttpPatch("{id}/password/NEW")]
+        public async Task<IActionResult> UpdatePassword(int id, [FromBody] UpdatePasswordRequest request)
+        {
+            var user = await _unitOfWork.UserRepository.GetByIdAsync(id);
+            if (user == null)
+                return NotFound();
+
+            _unitOfWork.UserRepository.UpdatePassword(user, request.Password);
+
+            // ✅ Cách đúng: gọi Save qua UnitOfWork
+            await _unitOfWork.SaveChangeAsync();
+
+            return NoContent();
         }
     }
 }

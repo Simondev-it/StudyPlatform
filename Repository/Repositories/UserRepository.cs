@@ -31,6 +31,16 @@ namespace Repository.Repositories
                 .AsNoTracking()
                 .FirstOrDefaultAsync(u => u.Username == username);
         }
+        public async Task<User> GetByIdAsync(int id)
+        {
+            return await _context.Users.FindAsync(id);
+        }
 
+        public void UpdatePassword(User user, string newPassword)
+        {
+            // Có thể hash tại đây nếu muốn
+            user.Password = newPassword;
+            _context.Entry(user).Property(x => x.Password).IsModified = true;
+        }
     }
 }
